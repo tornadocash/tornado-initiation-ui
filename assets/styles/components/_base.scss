@@ -1,0 +1,43 @@
+$primary: #44F1A6;
+$primary-invert: #000000;
+
+$size-normal: 0.875rem;
+
+@import '~bulma/sass/utilities/_all';
+
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+$body-family: 'PT Mono', monospace;
+$body-background-color: $primary-invert;
+$body-color: $white;
+$body-min-width: 320px;
+
+$title-size: 2.25rem;
+$title-color: $white;
+$title-weight: 600;
+$title-line-height: 2.5rem;
+
+$subtitle-color: $white;
+$subtitle-size: 0.813rem;
+$subtitle-line-height: 1.5;
+$subtitle-negative-margin: -1rem;
+
+$link: $primary;
+$link-hover: darken($primary, 15%);
+
+$navbar-background-color: transparent;
+$navbar-item-color: $white;
+$navbar-item-hover-color: $primary;
+$navbar-item-hover-background-color: transparent;
+$navbar-item-active-color: $primary;
+$navbar-breakpoint: $tablet;
+
+@import '~bulma/sass/base/_all';
+@import '~bulma/sass/helpers/_all';
+@import '~bulma/sass/elements/_all';
+@import '~bulma/sass/components/_all';
+@import '~bulma/sass/form/_all';
+@import '~bulma/sass/grid/_all';
+@import '~bulma/sass/layout/_all';
+@import '~buefy/src/scss/buefy';

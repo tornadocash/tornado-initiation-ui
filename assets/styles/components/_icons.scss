@@ -1,0 +1,21 @@
+.trnd {
+  height: 1rem;
+  width: 1rem;
+  background-color: $primary;
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+
+  .trnd-48px {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &-tool {
+    mask-image: url('../images/icons/tool.svg');
+  }
+
+  &-check {
+    mask-image: url('../images/icons/check.svg');
+  }
+}

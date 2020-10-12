@@ -1,0 +1,50 @@
+.step {
+  margin: 1.25rem 0;
+  background: #1F1F1F;
+  border-radius: 6px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .diamond {
+    margin-right: 1.25rem;
+  }
+
+  &-body {
+    flex-grow: 1;
+
+    h4 {
+      font-weight: 700;
+    }
+
+    .deployed {
+      font-size: 0.813rem;
+      color: #6B6B6B;
+      margin-top: .25rem;
+    }
+  }
+
+  &-tail {
+    background-color: #191919;
+    align-self: stretch;
+    margin: -1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+    width: 148px;
+
+    .completed {
+      display: flex;
+      align-items: center;
+      font-size: $size-normal;
+      color: $primary;
+      font-weight: 700;
+
+      .icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

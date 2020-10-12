@@ -1,0 +1,43 @@
+.button {
+  font-weight: 700;
+
+  &.is-primary {
+    &.is-outlined {
+      background-color: #182922;
+    }
+
+    .trnd {
+      background-color: $primary;
+    }
+
+    &:hover, &:focus {
+      .trnd {
+        background-color: $primary-invert;
+      }
+    }
+
+    &[disabled] {
+      .trnd {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .icon {
+    &:first-child:not(:last-child) {
+      margin-left: -0.25em;
+      margin-right: 0.5em; }
+    &:last-child:not(:first-child) {
+      margin-left: 0.5em;
+      margin-right: -0.25em; }
+    &:first-child:last-child {
+      margin-left: 0;
+      margin-right: 0; }
+  }
+
+  &:not(.is-small) {
+    span:not(.icon):not(.b-tooltip):first-child:last-child {
+      padding: 0 .5rem;
+    }
+  }
+}

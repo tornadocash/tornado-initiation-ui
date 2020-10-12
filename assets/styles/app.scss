@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  @media print {
+    background: none;
+  }
+
+  > .main-content {
+    flex: 1;
+  }
+}
+
+@import 'components/font';
+@import 'components/base';
+@import 'components/button';
+@import 'components/icons';
+@import 'components/step';
+@import 'components/header';
+
+html {
+  background: linear-gradient(180deg, #181818 0%, #000000 100%);
+  background-attachment: fixed;
+}
+
+.title {
+  span {
+    color: $primary;
+  }
+
+  &.is-14px {
+    font-size: 0.875rem;
+  }
+}
+
+.tornado-discoverer {
+  margin-top: -3.5rem;
+  background-image: url('../images/discoverer.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
