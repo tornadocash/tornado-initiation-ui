@@ -1,6 +1,6 @@
 <template>
   <div class="step">
-    <diamond :active="data.deployAddress" />
+    <diamond :active="!!data.deployAddress" />
     <div class="step-body">
       <h4>{{ data.title }}</h4>
       <div v-if="data.deployAddress" class="deployed">

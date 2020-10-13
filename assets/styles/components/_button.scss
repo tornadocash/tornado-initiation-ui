@@ -25,11 +25,11 @@
 
   .icon {
     &:first-child:not(:last-child) {
-      margin-left: -0.25em;
+      margin-left: -0.15em;
       margin-right: 0.5em; }
     &:last-child:not(:first-child) {
       margin-left: 0.5em;
-      margin-right: -0.25em; }
+      margin-right: -0.15em; }
     &:first-child:last-child {
       margin-left: 0;
       margin-right: 0; }

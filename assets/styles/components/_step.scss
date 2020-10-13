@@ -1,3 +1,7 @@
+.steps {
+  padding-top: 1.25rem;
+}
+
 .step {
   margin: 1.25rem 0;
   background: #1F1F1F;
@@ -6,6 +10,11 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
 
   .diamond {
     margin-right: 1.25rem;

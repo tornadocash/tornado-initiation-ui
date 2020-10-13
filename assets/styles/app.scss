@@ -3,9 +3,8 @@
   flex-direction: column;
   min-height: 100vh;
 
-  @media print {
-    background: none;
-  }
+  background: linear-gradient(180deg, #181818 0%, #000000 100%);
+  background-attachment: fixed;
 
   > .main-content {
     flex: 1;
@@ -18,11 +17,6 @@
 @import 'components/icons';
 @import 'components/step';
 @import 'components/header';
-
-html {
-  background: linear-gradient(180deg, #181818 0%, #000000 100%);
-  background-attachment: fixed;
-}
 
 .title {
   span {
