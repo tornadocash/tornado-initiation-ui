@@ -12,7 +12,13 @@
         <b-icon icon="check" />
         <span>Completed</span>
       </div>
-      <b-button v-else type="is-primary" outlined icon-left="tool">
+      <b-button
+        v-else
+        type="is-primary"
+        outlined
+        icon-left="tool"
+        @click="onDeploy"
+      >
         Deploy
       </b-button>
     </div>
@@ -20,6 +26,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Diamond from '@/components/Diamond'
 
 export default {
@@ -30,6 +37,13 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    ...mapActions('deploy', ['deployContract']),
+    // todo pass ens domain here
+    onDeploy(/* domain */) {
+      this.deployContract({ domain: 'torn.deploy.tornadocash.eth' })
     },
   },
 }
