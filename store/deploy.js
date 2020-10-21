@@ -25,24 +25,30 @@ const actions = {
   ) {
     try {
       const ethAccount = rootGetters['provider/getAccount']
+      const web3 = rootGetters['provider/getWeb3']
       const { salt } = deploymentActions
-      const { bytecode } = deploymentActions.actions.filter((action) => {
-        return action.domain === domain
-      })[0]
+      const { bytecode, expectedAddress } = deploymentActions.actions.filter(
+        (action) => {
+          return action.domain === domain
+        }
+      )[0]
+
+      const code = await web3.eth.getCode(expectedAddress)
+
+      if (code !== '0x') {
+        throw new Error('Already deployed')
+      }
       const data = getters.deployerContract.methods
         .deploy(bytecode, salt)
         .encodeABI()
 
-      const gas = await getters.deployerContract.methods
-        .deploy(bytecode, salt)
-        .estimateGas({ from: ethAccount })
       const callParams = {
         method: 'eth_sendTransaction',
         params: [
           {
             from: ethAccount,
-            to: getters.deployerContract.address,
-            gas: numberToHex(gas + 100000),
+            to: getters.deployerContract._address,
+            gas: numberToHex(6e6),
             gasPrice: '0x100000000',
             value: 0,
             data,

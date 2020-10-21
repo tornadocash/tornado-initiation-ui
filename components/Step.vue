@@ -1,14 +1,14 @@
 <template>
   <div class="step">
-    <diamond :active="!!data.deployAddress" />
+    <diamond :active="!!data.deployerAddress" />
     <div class="step-body">
       <h4>{{ data.title }}</h4>
-      <div v-if="data.deployAddress" class="deployed">
-        Deployed by: <a href="#">{{ data.deployAddress }}</a>
+      <div v-if="data.deployerAddress" class="deployed">
+        Deployed by: <a href="#">{{ data.deployerAddress }}</a>
       </div>
     </div>
     <div class="step-tail">
-      <div v-if="data.deployAddress" class="completed">
+      <div v-if="data.deployerAddress" class="completed">
         <b-icon icon="check" />
         <span>Completed</span>
       </div>
