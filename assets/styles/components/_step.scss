@@ -11,6 +11,10 @@
   align-items: center;
   overflow: hidden;
 
+  @include mobile {
+    flex-wrap: wrap;
+  }
+
   &:first-child {
     margin-top: 0;
   }
@@ -18,19 +22,32 @@
 
   .diamond {
     margin-right: 1.25rem;
+
+    @include mobile {
+      align-self: flex-start;
+    }
   }
 
   &-body {
     flex-grow: 1;
 
+    @include mobile {
+      width: calc(100% - 60px - 1.25rem);
+    }
+
     h4 {
       font-weight: 700;
+      @include until(576px) {
+        font-size: 0.9rem;
+      }
     }
 
     .deployed {
       font-size: 0.813rem;
       color: #6B6B6B;
       margin-top: .25rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
@@ -43,6 +60,12 @@
     align-items: center;
     padding: 1.25rem;
     width: 148px;
+
+    @include mobile {
+      margin-top: 1.25rem;
+      flex-basis: 100%;
+      flex-grow: 1;
+    }
 
     .completed {
       display: flex;
