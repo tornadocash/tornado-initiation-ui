@@ -43,7 +43,8 @@ export default {
     ...mapActions('deploy', ['deployContract']),
     // todo pass ens domain here
     onDeploy(/* domain */) {
-      this.deployContract({ domain: 'torn.deploy.tornadocash.eth' })
+      // console.log('this.props', this.data)
+      this.deployContract({ domain: this.data.domain })
     },
   },
 }

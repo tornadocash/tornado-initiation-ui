@@ -1,0 +1,153 @@
+.wallets {
+  &.field.is-grouped.is-grouped-multiline {
+    margin: -0.5rem;
+
+    > .control {
+      margin: 0;
+
+      &.control-with-select {
+        margin: 0.5rem;
+      }
+
+      &:not(.control-with-select) {
+        .button {
+          margin: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .button {
+    width: 120px;
+    flex-direction: column;
+    height: auto;
+
+    &.is-black {
+      background-color: #559774;
+
+      &:hover {
+        background-color: #94febf;
+      }
+    }
+
+    &:before {
+      content: '';
+      height: 64px;
+      width: 64px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin: 0.25rem 0;
+    }
+
+    &.is-metamask:before {
+      background-image: url('../images/metamask-fox.svg');
+    }
+
+    &.is-generic:before {
+      background-image: url('../images/ethereum.svg');
+    }
+
+    &.is-portis:before {
+      background-image: url('../images/portis.svg');
+    }
+
+    &.is-torus:before {
+      background-image: url('../images/torus.png');
+    }
+
+    &.is-squarelink:before {
+      background-image: url('../images/squarelink.svg');
+    }
+
+    &.is-trustwallet:before {
+      background-image: url('../images/trustwallet.svg');
+    }
+
+    &.is-imtoken:before {
+      background-image: url('../images/imtoken.svg');
+    }
+
+    &.is-alphawallet:before {
+      background-image: url('../images/alphawallet.svg');
+    }
+
+    &.is-fortmatic:before {
+      background-image: url('../images/fortmatic.svg');
+    }
+  }
+
+  .control-with-select {
+    display: flex;
+    flex-direction: column;
+
+    .button {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-width: 0;
+
+      &:before {
+        height: 38px;
+      }
+    }
+
+    .select {
+      &.is-empty {
+        select {
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      select {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top-width: 0;
+        border-color: #559774;
+        background-color: #559774;
+        height: 1.929rem;
+        color: $primary-invert;
+
+        &:hover {
+          background-color: $primary;
+          border-color: $primary;
+        }
+
+        &:focus {
+          border-color: #559774;
+          box-shadow: none;
+        }
+      }
+
+      &:not(.is-multiple) {
+        height: 1.929rem;
+
+        &:not(.is-loading) {
+          &::after {
+            border-color: $primary-invert;
+          }
+        }
+      }
+    }
+  }
+
+  .network-select {
+    width: 120px;
+    overflow: hidden;
+  }
+
+  /*> .control:hover {
+    .button {
+      border-color: #cdcdcd;
+    }
+
+    &.control-with-select {
+      .button {
+        border-bottom-color: $black;
+      }
+
+      .select select {
+        border-color: #cdcdcd;
+      }
+    }*
+  }*/
+}

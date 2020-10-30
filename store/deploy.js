@@ -34,7 +34,7 @@ const actions = {
       )[0]
 
       const code = await web3.eth.getCode(expectedAddress)
-
+      console.log('code', code)
       if (code !== '0x') {
         throw new Error('Already deployed')
       }

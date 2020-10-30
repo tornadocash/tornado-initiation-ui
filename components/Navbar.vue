@@ -35,6 +35,7 @@
 
 <script>
 import Logo from '@/components/Logo'
+import Web3Connect from '@/components/Web3Connect'
 
 export default {
   components: {
@@ -46,8 +47,17 @@ export default {
     }
   },
   methods: {
-    onLogIn() {},
-    onLogOut() {},
+    onLogIn() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: Web3Connect,
+        hasModalCard: true,
+        width: 440,
+      })
+    },
+    onLogOut() {
+      this.$store.commit('metamask/CLEAR_PROVIDER')
+    },
   },
 }
 </script>

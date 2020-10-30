@@ -3,7 +3,7 @@ $control-border-width: 1px;
 $control-padding-vertical: calc(0.375rem - #{$control-border-width});
 $control-padding-horizontal: calc(1.063rem - #{$control-border-width});
 
-$primary: #44F1A6;
+$primary: #44f1a6;
 $primary-invert: #000000;
 
 $size-normal: 0.875rem;
@@ -37,6 +37,22 @@ $navbar-item-hover-color: $primary;
 $navbar-item-hover-background-color: transparent;
 $navbar-item-active-color: $primary;
 $navbar-breakpoint: $tablet;
+
+$modal-background-background-color: rgba(#050505, 0.86);
+$modal-card-title-color: $primary;
+$modal-card-head-background-color: $primary-invert;
+$modal-card-head-border-bottom: none;
+$modal-card-foot-border-top: none;
+$modal-card-body-background-color: $primary-invert;
+$modal-card-foot-radius: 0;
+$modal-card-head-radius: 0;
+$modal-card-body-padding: 0 1.5rem;
+$modal-card-head-padding: 1.5rem;
+
+$box-background-color: $primary-invert;
+$box-shadow: none;
+$box-color: #fefefe;
+$box-padding: 1.5rem;
 
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/helpers/_all';
