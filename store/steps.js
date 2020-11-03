@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import Web3 from 'web3'
+import deploymentActions from '../static/deploymentActions.json'
 
 const state = () => {
   return {
@@ -105,20 +107,31 @@ const getters = {
 const SET_DEPLOYER = 'SET_DEPLOYER'
 const mutations = {
   [SET_DEPLOYER](state, { stepIndex, deployerAddress }) {
-    console.log('SET_DEPLOYER', stepIndex, deployerAddress)
-    console.log('state.steps[stepIndex]', state.steps[stepIndex])
     this._vm.$set(state.steps[stepIndex], 'deployerAddress', deployerAddress)
   },
 }
 
 const actions = {
-  fetchDeploymentStatus({ state, dispatch, commit }) {
+  async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
+    const { rpcUrls } = rootGetters['provider/getNetwork']
+    const web3 = new Web3(rpcUrls.Infura.url)
+
     try {
-      // todo collect data from chain
-      commit(SET_DEPLOYER, {
-        stepIndex: 0,
-        deployerAddress: '0x03Ebd0748Aa4D1457cF479cce56309641e0a98F5',
-      })
+      for (const [stepIndex, step] of state.steps.entries()) {
+        const { expectedAddress } = deploymentActions.actions.find((action) => {
+          return action.domain === step.domain
+        })
+
+        const code = await web3.eth.getCode(expectedAddress)
+
+        if (code !== '0x') {
+          // todo collect deployerAddress from chain
+          commit(SET_DEPLOYER, {
+            stepIndex,
+            deployerAddress: '0x03Ebd0748Aa4D1457cF479cce56309641e0a98F5',
+          })
+        }
+      }
     } catch (e) {
       console.error('fetchDeploymentStatus', e.message)
     }

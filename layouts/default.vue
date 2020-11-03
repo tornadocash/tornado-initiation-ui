@@ -27,17 +27,15 @@ export default {
     Loading,
     Notices,
   },
-  mounted() {
-    this.fetchDeploymentStatus()
-
+  async mounted() {
     const result = localStorage.getItem('provider')
     if (result && result.name) {
-      this.initProvider({
+      await this.initProvider({
         name: result.name,
         network: result.network,
       })
     }
-
+    this.fetchDeploymentStatus()
     this.fetchGasPrice()
   },
   methods: {
