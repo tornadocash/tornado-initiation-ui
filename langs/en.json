@@ -8,7 +8,6 @@
   "connect": "Connect",
   "close": "Close",
   "preparingTransactionData": "Preparing Transaction Data",
-  "viewInExplorer": "View in explorer",
   "loading": "Loading",
   "pleaseConfirmTransactionInWallet": "Please confirm transaction in {wallet}",
   "info": "Info",
@@ -18,5 +17,10 @@
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
   "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium."
+  "pageSubtitle": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
+  "alreadyDeployed": "Already deployed",
+  "contractDeployed": "Contract successfully deployed",
+  "transactionFailed": "Transaction was failed",
+  "sendingTransaction": "Sending transaction",
+  "viewOnEtherscan": "View on Etherscan"
 }

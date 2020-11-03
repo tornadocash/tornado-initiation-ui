@@ -63,14 +63,14 @@ export default {
     },
   },
   methods: {
-    _web3Connect(name, network) {
+    async _web3Connect(name, network = 'mainnet') {
       this.$store.dispatch('loading/enable', {})
       try {
-        // TODO: update connect with new provider module
-        // await this.$store.dispatch('metamask/initialize', {
-        //   providerName: name,
-        //   networkName: network,
-        // })
+        await this.$store.dispatch(
+          'provider/initProvider',
+          { name, network },
+          { root: true }
+        )
       } catch (e) {
         console.error(e)
       }

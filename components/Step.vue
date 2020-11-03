@@ -24,6 +24,8 @@
         type="is-primary"
         outlined
         icon-left="tool"
+        :disabled="isNotLoggedIn"
+        @mousedown="(e) => e.preventDefault()"
         @click="onDeploy"
       >
         {{ $t('deploy') }}
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Diamond from '@/components/Diamond'
 
 export default {
@@ -44,6 +46,12 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    ...mapGetters('provider', ['getProviderName']),
+    isNotLoggedIn() {
+      return !this.getProviderName
     },
   },
   methods: {

@@ -1,14 +1,16 @@
 .notices {
   .notification {
-    min-width: 280px;
+    width: 290px;
     pointer-events: auto;
     padding: 1.071rem 3.214rem 1.071rem 1.071em;
+    font-size: 0.813rem;
 
     a:not(.button):not(.dropdown-item) {
       color: $primary;
       display: block;
       margin-top: .15rem;
       text-decoration: none;
+      font-size: 0.750rem;
 
       &:hover {
         text-decoration: underline;

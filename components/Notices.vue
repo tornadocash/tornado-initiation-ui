@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapState('notice', ['notices']),
-    ...mapGetters('txHashKeeper', ['txExplorerUrl']),
+    ...mapGetters('txStorage', ['txExplorerUrl']),
   },
   methods: {
     ...mapActions('notice', ['deleteNotice']),

@@ -2,12 +2,31 @@ import {
   SET_ACCOUNT,
   SET_NETWORK,
   SET_BALANCE,
+  CLEAR_STATE,
+  SET_PROVIDER,
   SET_PROVIDER_API,
   SET_NETWORK_NAME,
   SET_PROVIDER_NAME,
 } from './constant'
 
 export default {
+  [SET_PROVIDER](state, provider) {
+    this._vm.$set(state, 'provider', provider)
+  },
+  [CLEAR_STATE](state) {
+    state.provider = {
+      account: null,
+      network: {
+        name: 'mainnet',
+        id: 1,
+      },
+      provider: {
+        name: '',
+        version: '',
+      },
+      balance: 0,
+    }
+  },
   [SET_BALANCE](state, balance) {
     this._vm.$set(state, 'balance', balance)
   },

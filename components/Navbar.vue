@@ -36,17 +36,20 @@
 <script>
 import Logo from '@/components/Logo'
 import Web3Connect from '@/components/Web3Connect'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
     Logo,
   },
-  data() {
-    return {
-      isLoggedIn: false,
-    }
+  computed: {
+    ...mapGetters('provider', ['getProviderName']),
+    isLoggedIn() {
+      return !!this.getProviderName
+    },
   },
   methods: {
+    ...mapActions('provider', ['clearState']),
     onLogIn() {
       this.$buefy.modal.open({
         parent: this,
@@ -56,7 +59,7 @@ export default {
       })
     },
     onLogOut() {
-      this.$store.commit('metamask/CLEAR_PROVIDER')
+      this.clearState()
     },
   },
 }

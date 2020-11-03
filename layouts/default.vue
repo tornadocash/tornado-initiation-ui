@@ -27,11 +27,9 @@ export default {
     Notices,
   },
   mounted() {
-    this.initProvider()
     this.fetchDeploymentStatus()
   },
   methods: {
-    ...mapActions('provider', ['initProvider']),
     ...mapActions('steps', ['fetchDeploymentStatus']),
   },
 }

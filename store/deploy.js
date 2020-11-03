@@ -24,6 +24,7 @@ const actions = {
     { domain }
   ) {
     try {
+      dispatch('loading/enable', {}, { root: true })
       const ethAccount = rootGetters['provider/getAccount']
       const web3 = rootGetters['provider/getWeb3']
       const { salt } = deploymentActions
@@ -36,6 +37,16 @@ const actions = {
       const code = await web3.eth.getCode(expectedAddress)
       console.log('code', code)
       if (code !== '0x') {
+        dispatch(
+          'notice/addNoticeWithInterval',
+          {
+            notice: {
+              title: 'alreadyDeployed',
+              type: 'danger',
+            },
+          },
+          { root: true }
+        )
         throw new Error('Already deployed')
       }
       const data = getters.deployerContract.methods
@@ -56,12 +67,70 @@ const actions = {
         ],
         from: ethAccount,
       }
+      dispatch(
+        'loading/changeText',
+        {
+          message: this.app.i18n.t('pleaseConfirmTransactionInWallet', {
+            wallet: rootGetters['provider/getProviderName'],
+          }),
+        },
+        { root: true }
+      )
       const txHash = await dispatch('provider/sendRequest', callParams, {
         root: true,
       })
       console.log('txHash', txHash)
+      dispatch('loading/disable', {}, { root: true })
+
+      const noticeId = await dispatch(
+        'notice/addNotice',
+        {
+          notice: {
+            title: 'sendingTransaction',
+            txHash,
+            type: 'loading',
+          },
+        },
+        { root: true }
+      )
+
+      const result = await dispatch(
+        'txStorage/runTxWatcher',
+        { txHash },
+        { root: true }
+      )
+
+      if (result) {
+        dispatch(
+          'notice/updateNotice',
+          {
+            id: noticeId,
+            notice: {
+              title: 'contractDeployed',
+              type: 'success',
+            },
+            interval: true,
+          },
+          { root: true }
+        )
+      } else {
+        dispatch(
+          'notice/updateNotice',
+          {
+            id: noticeId,
+            notice: {
+              title: 'transactionFailed',
+              type: 'danger',
+            },
+            interval: true,
+          },
+          { root: true }
+        )
+      }
     } catch (e) {
       console.error('deployContract', e.message)
+    } finally {
+      dispatch('loading/disable', {}, { root: true })
     }
   },
 }

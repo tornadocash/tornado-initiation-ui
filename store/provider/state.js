@@ -5,8 +5,8 @@ export default () => ({
     id: 1,
   },
   provider: {
-    name: 'metamask',
-    version: 'new',
+    name: '',
+    version: '',
   },
   balance: 0,
 })
