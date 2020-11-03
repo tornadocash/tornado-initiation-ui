@@ -10,9 +10,9 @@ const state = () => {
 
 const getters = {
   deployerContract: (state, getters, rootState, rootGetters) => {
-    const { deployerContract, rpcUrls } = rootGetters['provider/getNetwork']
+    const { rpcUrls } = rootGetters['provider/getNetwork']
     const web3 = new Web3(rpcUrls.Infura.url)
-    return new web3.eth.Contract(deployerABI, deployerContract)
+    return new web3.eth.Contract(deployerABI, deploymentActions.deployer)
   },
 }
 

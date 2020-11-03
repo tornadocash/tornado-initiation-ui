@@ -15,7 +15,6 @@ const networkConfig = {
       },
       MyCrypto: { name: 'MyCrypto', url: 'https://api.mycryptoapi.com/eth' },
     },
-    deployerContract: '0xce0042b868300000d44a59004da54a005ffdcf9f',
     pollInterval: 60,
   },
   netId42: {
@@ -27,7 +26,6 @@ const networkConfig = {
       address: 'https://kovan.etherscan.io/address/',
     },
     networkName: 'Kovan',
-    deployerContract: '0xce0042b868300000d44a59004da54a005ffdcf9f',
     rpcUrls: {
       Infura: {
         name: 'Infura',

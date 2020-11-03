@@ -12,42 +12,57 @@ const state = () => {
       },
       {
         title: 'Governance Implementation',
-        domain: 'governanceImpl.deploy.tornadocash.eth',
+        domain: 'governance-impl.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Governance Upgradable Proxy',
-        domain: 'gov.deploy.tornadocash.eth',
+        domain: 'governance.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: Verifier (1/3)',
-        domain: 'reward.verifier.deploy.tornadocash.eth',
+        domain: 'reward-verifier.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: Verifier (2/3)',
-        domain: 'withdraw.verifier.deploy.tornadocash.eth',
+        domain: 'withdraw-verifier.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: Verifier (3/3)',
-        domain: 'treeUpdate.verifier.deploy.tornadocash.eth',
+        domain: 'tree-update-verifier.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: Swap contract for private points',
-        domain: 'swap.deploy.tornadocash.eth',
+        domain: 'reward-swap.deploy.tornadocash.eth',
+        deployerAddress: null,
+      },
+      {
+        title: 'Poseidon hasher for two arguments',
+        domain: 'poseidon2.deploy.tornadocash.eth',
+        deployerAddress: null,
+      },
+      {
+        title: 'Poseidon hasher for three arguments',
+        domain: 'poseidon3.deploy.tornadocash.eth',
+        deployerAddress: null,
+      },
+      {
+        title: 'A proxy contract for ETH Tornado.cash instances',
+        domain: 'tornado-proxy.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: TornadoTrees contract',
-        domain: 'tornadoTrees.deploy.tornadocash.eth',
+        domain: 'tornado-trees.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
         title: 'Anonymity mining: Miner contract',
-        domain: 'miningV2.deploy.tornadocash.eth',
+        domain: 'mining-v2.deploy.tornadocash.eth',
         deployerAddress: null,
       },
       {
@@ -81,12 +96,12 @@ const state = () => {
         deployerAddress: null,
       },
       {
-        domain: 'mining.vesting.deploy.tornadocash.eth',
+        domain: 'mining-v3.vesting.deploy.tornadocash.eth',
         deployerAddress: null,
         title: 'Vesting for the future anonymity mining (V3 release)',
       },
       {
-        domain: 'gov.vesting.deploy.tornadocash.eth',
+        domain: 'governance.vesting.deploy.tornadocash.eth',
         deployerAddress: null,
         title: 'Vesting for the governance itself',
       },
@@ -113,6 +128,15 @@ const mutations = {
 
 const actions = {
   async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
+    // const deployContract = rootGetters['deploy/deployerContract']
+    // const events = await deployContract.getPastEvents('Deployed', {
+    //   // filter: {
+    //   //   addr: ['0xd51154a046d2af2c572e850a4ed5bd65db2d83f0'],
+    //   // },
+    //   fromBlock: 21895260,
+    //   toBlock: 'latest',
+    // })
+    // console.log('events', events)
     const { rpcUrls } = rootGetters['provider/getNetwork']
     const web3 = new Web3(rpcUrls.Infura.url)
 
