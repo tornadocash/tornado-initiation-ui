@@ -6,7 +6,7 @@
       </b-navbar-item>
     </template>
     <template slot="start">
-      <b-navbar-item>Info</b-navbar-item>
+      <b-navbar-item>{{ $t('info') }}</b-navbar-item>
     </template>
     <template slot="end">
       <b-navbar-item tag="div">
@@ -17,7 +17,7 @@
             outlined
             icon-left="logout"
             @click="onLogOut"
-            >Logout</b-button
+            >{{ $t('logout') }}</b-button
           >
           <b-button
             v-else
@@ -25,7 +25,7 @@
             outlined
             icon-left="wallet"
             @click="onLogIn"
-            >Connect</b-button
+            >{{ $t('connect') }}</b-button
           >
         </div>
       </b-navbar-item>

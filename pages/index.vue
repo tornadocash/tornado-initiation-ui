@@ -1,10 +1,7 @@
 <template>
   <div>
     <h1 class="title has-text-centered">Tornado.cash <span>Ceremony</span></h1>
-    <h2 class="subtitle has-text-centered">
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-      accusantium.
-    </h2>
+    <h2 class="subtitle has-text-centered">{{ $t('pageSubtitle') }}</h2>
 
     <div class="buttons is-centered">
       <b-button
@@ -13,11 +10,15 @@
         icon-left="tool"
         @mousedown="(e) => e.preventDefault()"
         @click="onStart"
-        >Start now</b-button
+        >{{ $t('startNow') }}</b-button
       >
     </div>
 
-    <h3 class="title is-14px mt-6">Completed Tasks: <span>5/16</span></h3>
+    <i18n tag="h3" class="title is-14px mt-6" path="completedTasks">
+      <template v-slot:progress>
+        <span>5/16</span>
+      </template>
+    </i18n>
 
     <div class="tornado-discoverer image is-16by9"></div>
 

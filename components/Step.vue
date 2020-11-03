@@ -3,14 +3,21 @@
     <diamond :active="!!data.deployerAddress" />
     <div class="step-body">
       <h4>{{ data.title }}</h4>
-      <div v-if="data.deployerAddress" class="deployed">
-        Deployed by: <a href="#">{{ data.deployerAddress }}</a>
-      </div>
+      <i18n
+        v-if="data.deployerAddress"
+        class="deployed"
+        tag="div"
+        path="deployedBy"
+      >
+        <template v-slot:link>
+          <a href="#">{{ data.deployerAddress }}</a>
+        </template>
+      </i18n>
     </div>
     <div class="step-tail">
       <div v-if="data.deployerAddress" class="completed">
         <b-icon icon="check" />
-        <span>Completed</span>
+        <span>{{ $t('completed') }}</span>
       </div>
       <b-button
         v-else
@@ -19,7 +26,7 @@
         icon-left="tool"
         @click="onDeploy"
       >
-        Deploy
+        {{ $t('deploy') }}
       </b-button>
     </div>
   </div>

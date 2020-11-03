@@ -38,7 +38,7 @@ $navbar-item-hover-background-color: transparent;
 $navbar-item-active-color: $primary;
 $navbar-breakpoint: $tablet;
 
-$modal-background-background-color: rgba(#050505, 0.86);
+$modal-background-background-color: rgba(#000, 0.95);
 $modal-card-title-color: $primary;
 $modal-card-head-background-color: $primary-invert;
 $modal-card-head-border-bottom: none;
@@ -49,10 +49,25 @@ $modal-card-head-radius: 0;
 $modal-card-body-padding: 0 1.5rem;
 $modal-card-head-padding: 1.5rem;
 
-$box-background-color: $primary-invert;
+$box-background-color: #1F1F1F;
 $box-shadow: none;
 $box-color: #fefefe;
 $box-padding: 1.5rem;
+
+$footer-background-color: transparent;
+$footer-padding: 2rem;
+
+$dropdown-item-color: $white;
+$dropdown-content-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px #6B6B6B;
+$dropdown-content-background-color: $primary-invert;
+$dropdown-item-hover-background-color: #2B2B2B;
+$dropdown-item-hover-color: $white;
+
+$dropdown-item-active-background-color: #313131;
+$dropdown-item-active-color: $white;
+
+$dropdown-content-padding-bottom: 0;
+$dropdown-content-padding-top: 0;
 
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/helpers/_all';

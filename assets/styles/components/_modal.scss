@@ -1,0 +1,25 @@
+.box-modal {
+  max-width: 440px;
+  overflow-y: auto;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    &.is-spaced {
+      margin-bottom: .475rem;
+    }
+  }
+
+  &-title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+}
