@@ -17,8 +17,6 @@ export const actions = {
       { root: true }
     )
 
-    console.info('runTxWatcher result', JSON.stringify(result))
-
     if (!result || !result.status) {
       return false
     }

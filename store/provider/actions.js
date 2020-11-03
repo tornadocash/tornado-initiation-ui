@@ -1,4 +1,5 @@
 import networkConfig from '@/networkConfig'
+import { localStorage } from '@/utillites'
 import {
   SET_ACCOUNT,
   SET_NETWORK,
@@ -13,6 +14,8 @@ export default {
     try {
       commit(SET_PROVIDER_NAME, name)
       commit(SET_NETWORK_NAME, network)
+
+      localStorage.setItem('provider', { name, network })
 
       const account = await this.$provider.initProvider(getters.getProvider)
       await dispatch('checkNetworkVersion')
@@ -57,8 +60,7 @@ export default {
   },
   clearState({ commit }) {
     try {
-      window.localStorage.removeItem('provider')
-
+      localStorage.removeItem('provider')
       commit(CLEAR_STATE)
     } catch (err) {
       throw new Error(err.message)
