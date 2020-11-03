@@ -16,7 +16,7 @@
 
     <i18n tag="h3" class="title is-14px mt-6" path="completedTasks">
       <template v-slot:progress>
-        <span>5/16</span>
+        <span>{{ deployedCount }}</span>
       </template>
     </i18n>
 
@@ -28,10 +28,14 @@
 
 <script>
 import Steps from '@/components/Steps'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Steps,
+  },
+  computed: {
+    ...mapGetters('steps', ['deployedCount']),
   },
   methods: {
     scrollTo(element) {

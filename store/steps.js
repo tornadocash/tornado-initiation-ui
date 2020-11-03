@@ -92,7 +92,15 @@ const state = () => {
   }
 }
 
-const getters = {}
+const getters = {
+  deployedCount: (state) => {
+    const deployed = state.steps.filter((step) => {
+      return !!step.deployerAddress
+    }).length
+    const all = state.steps.length
+    return `${deployed}/${all}`
+  },
+}
 
 const SET_DEPLOYER = 'SET_DEPLOYER'
 const mutations = {
