@@ -97,13 +97,13 @@ const actions = {
         { root: true }
       )
 
-      const result = await dispatch(
+      const success = await dispatch(
         'txStorage/runTxWatcher',
         { txHash },
         { root: true }
       )
 
-      if (result) {
+      if (success) {
         dispatch(
           'notice/updateNotice',
           {
@@ -116,6 +116,7 @@ const actions = {
           },
           { root: true }
         )
+        dispatch('steps/fetchDeploymentStatus', {}, { root: true })
       } else {
         dispatch(
           'notice/updateNotice',
