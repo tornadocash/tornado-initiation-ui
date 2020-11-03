@@ -21,6 +21,8 @@
 @import 'components/modal';
 @import 'components/flag';
 @import 'components/dropdown';
+@import 'components/loading';
+@import 'components/notice';
 
 .title {
   span {
@@ -41,13 +43,13 @@
 
 .delete {
   border-radius: 0;
-  height: .902rem;
-  max-height: .902rem;
-  max-width: .902rem;
-  min-height: .902rem;
-  min-width: .902rem;
-  width: .902rem;
-  background-color: #FFFFFF;
+  height: 1rem;
+  max-height: 1rem;
+  max-width: 1rem;
+  min-height: 1rem;
+  min-width: 1rem;
+  width: 1rem;
+  background-color: #6B6B6B;
   mask-size: contain;
   mask-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.2131 1.07106C15.0179 0.875816 14.7013 0.875799 14.506 1.07106L8.14207 7.43502L1.77811 1.07106C1.58286 0.875816 1.26627 0.875799 1.071 1.07106C0.875742 1.26632 0.875752 1.58292 1.071 1.77817L7.43496 8.14213L1.071 14.5061C0.875742 14.7014 0.875752 15.018 1.071 15.2132C1.26625 15.4084 1.58285 15.4085 1.77811 15.2132L8.14207 8.84924L14.506 15.2132C14.7013 15.4084 15.0179 15.4085 15.2131 15.2132C15.4084 15.0179 15.4084 14.7013 15.2131 14.5061L8.84918 8.14213L15.2131 1.77817C15.4084 1.58291 15.4084 1.26631 15.2131 1.07106Z' fill='%23C0D4F3'/%3E%3C/svg%3E%0A");
 
@@ -56,6 +58,6 @@
   }
 
   &:hover, &:focus {
-    background-color: #6B6B6B;
+    background-color: #fff;
   }
 }

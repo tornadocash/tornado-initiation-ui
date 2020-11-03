@@ -7,8 +7,8 @@
   mask-repeat: no-repeat;
 
   .trnd-48px {
-    height: 2rem;
-    width: 2rem;
+    height: 1.875rem;
+    width: 1.875rem;
   }
 
   &-tool {
@@ -41,5 +41,69 @@
 
   &-github {
     mask-image: url("data:image/svg+xml,%3Csvg width='24' height='23' viewBox='0 0 24 23' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0C5.37 0 0 5.28 0 11.792C0 17.003 3.438 21.422 8.205 22.98C8.805 23.091 9.025 22.726 9.025 22.413C9.025 22.133 9.015 21.391 9.01 20.408C5.672 21.119 4.968 18.826 4.968 18.826C4.422 17.465 3.633 17.101 3.633 17.101C2.546 16.37 3.717 16.385 3.717 16.385C4.922 16.467 5.555 17.6 5.555 17.6C6.625 19.403 8.364 18.882 9.05 18.581C9.158 17.818 9.467 17.299 9.81 17.004C7.145 16.709 4.344 15.695 4.344 11.177C4.344 9.89 4.809 8.838 5.579 8.013C5.444 7.715 5.039 6.516 5.684 4.892C5.684 4.892 6.689 4.576 8.984 6.101C9.944 5.839 10.964 5.709 11.984 5.703C13.004 5.709 14.024 5.839 14.984 6.101C17.264 4.576 18.269 4.892 18.269 4.892C18.914 6.516 18.509 7.715 18.389 8.013C19.154 8.838 19.619 9.89 19.619 11.177C19.619 15.707 16.814 16.704 14.144 16.994C14.564 17.348 14.954 18.071 14.954 19.176C14.954 20.754 14.939 22.022 14.939 22.405C14.939 22.714 15.149 23.083 15.764 22.965C20.565 21.417 24 16.995 24 11.792C24 5.28 18.627 0 12 0Z' fill='%23838BAD'/%3E%3C/svg%3E%0A");
+  }
+
+  &-loading {
+    height: 1.875rem;
+    width: 1.875rem;
+    background: conic-gradient(from 180deg at 50% 50%, $primary 0deg, rgba(255, 255, 255, 0) 360deg);
+    animation: spin 2s linear infinite;
+    position: relative;
+    border-radius: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      background: $notification-background-color;
+      left: calc(50% - 11px);
+      top: calc(50% - 11px);
+      border-radius: 100%;
+    }
+  }
+
+  &-info {
+    height: 1.875rem;
+    width: 1.875rem;
+    background-image: url('../images/icons/notice/info.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+  }
+  &-success {
+    height: 1.875rem;
+    width: 1.875rem;
+    background-image: url('../images/icons/notice/success.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+  }
+  &-warning {
+    height: 1.875rem;
+    width: 1.875rem;
+    background-image: url('../images/icons/notice/warning.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    background-color: $warning;
+  }
+  &-danger {
+    height: 1.875rem;
+    width: 1.875rem;
+    background-image: url('../images/icons/notice/danger.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    background-color: $danger;
+  }
+}
+
+@keyframes spin{
+  0% {
+    transform:rotate(0deg)
+  }
+  to {
+    transform:rotate(-1turn)
   }
 }

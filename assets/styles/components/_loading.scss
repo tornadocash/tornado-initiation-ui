@@ -1,0 +1,37 @@
+.loading-overlay {
+  .loading-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .loading-tornado {
+      &:after {
+        content: '';
+        display: block;
+        height: 60px;
+        width: 60px;
+        background-image: url('../images/logo.svg');
+        animation: spinAroundReverse 2000ms infinite linear;
+      }
+    }
+
+    .loading-message {
+      padding-top: .5rem;
+      color: $primary;
+      text-align: center;
+
+      + .button {
+        margin-top: .5rem;
+      }
+    }
+  }
+}
+
+@keyframes spinAroundReverse {
+  from {
+    transform: rotate(359deg); }
+  to {
+    transform: rotate(0deg); }
+}

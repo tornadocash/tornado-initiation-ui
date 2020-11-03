@@ -1,0 +1,27 @@
+.notices {
+  .notification {
+    min-width: 280px;
+    pointer-events: auto;
+    padding: 1.071rem 3.214rem 1.071rem 1.071em;
+
+    a:not(.button):not(.dropdown-item) {
+      color: $primary;
+      display: block;
+      margin-top: .15rem;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .media {
+      align-items: center;
+    }
+
+    .delete {
+      right: 1rem;
+      top: calc(50% - .5rem);
+    }
+  }
+}

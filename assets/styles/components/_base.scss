@@ -5,6 +5,8 @@ $control-padding-horizontal: calc(1.063rem - #{$control-border-width});
 
 $primary: #44f1a6;
 $primary-invert: #000000;
+$warning: #FF8F50;
+$danger: #F44C6A;
 
 $size-normal: 0.875rem;
 
@@ -68,6 +70,12 @@ $dropdown-item-active-color: $white;
 
 $dropdown-content-padding-bottom: 0;
 $dropdown-content-padding-top: 0;
+
+$loading-background-legacy: #000;
+$loading-background: rgba(0,0,0,0.95);
+
+$notification-background-color: #1F1F1F;
+$notification-radius: 6px;
 
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/helpers/_all';
