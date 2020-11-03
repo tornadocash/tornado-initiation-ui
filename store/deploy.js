@@ -49,6 +49,9 @@ const actions = {
         )
         throw new Error('Already deployed')
       }
+
+      const gasPrice = rootGetters['gasPrice/fastGasPrice']
+
       const data = getters.deployerContract.methods
         .deploy(bytecode, salt)
         .encodeABI()
@@ -60,7 +63,7 @@ const actions = {
             from: ethAccount,
             to: getters.deployerContract._address,
             gas: numberToHex(6e6),
-            gasPrice: '0x100000000',
+            gasPrice,
             value: 0,
             data,
           },

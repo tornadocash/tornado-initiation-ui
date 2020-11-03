@@ -32,18 +32,18 @@ export default {
 
     const result = localStorage.getItem('provider')
     if (result && result.name) {
-      this.$store.dispatch(
-        'provider/initProvider',
-        {
-          name: result.name,
-          network: result.network,
-        },
-        { root: true }
-      )
+      this.initProvider({
+        name: result.name,
+        network: result.network,
+      })
     }
+
+    this.fetchGasPrice()
   },
   methods: {
+    ...mapActions('provider', ['initProvider']),
     ...mapActions('steps', ['fetchDeploymentStatus']),
+    ...mapActions('gasPrice', ['fetchGasPrice']),
   },
 }
 </script>
