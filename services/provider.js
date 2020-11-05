@@ -8,6 +8,7 @@ class Provider {
    * @param options {object}
    * @param {object} options.config
    * @param {number} options.config.id
+   * @param {string} options.config.rpcUrl
    * @param {number} options.config.rpcCallRetryAttempt
    * @param {object} options.provider
    * @param {string} options.rpcUrl - node api endpoint.
@@ -18,6 +19,7 @@ class Provider {
     this.version = 'new'
 
     this.config = options.config
+    this.web3 = new Web3(new Web3.providers.HttpProvider(options.rpcUrl))
   }
 
   async initProvider(provider) {
@@ -228,6 +230,19 @@ class Provider {
   }
 
   /**
+   * Subscribe to event in provider.
+   *
+   * @param method {string}
+   * @param {function} callback
+   * @returns {*}
+   */
+  on(method, callback) {
+    if (method) {
+      this.provider.on(method, callback)
+    }
+  }
+
+  /**
    * Send a request to the provider (old api).
    *
    * @param options {object}
@@ -291,9 +306,12 @@ class Provider {
    * @param {string} params.id.
    * @returns {*}
    */
-  _onNetworkChanged({ id }) {
+  _onNetworkChanged({ id, callback }) {
     if (id) {
       this.network = id
+      if (typeof callback === 'function') {
+        callback()
+      }
       window.location.reload()
     }
   }

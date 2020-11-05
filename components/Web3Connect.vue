@@ -63,7 +63,7 @@ export default {
     },
   },
   methods: {
-    async _web3Connect(name, network = 'mainnet') {
+    async _web3Connect(name, network) {
       this.$store.dispatch('loading/enable', {})
       try {
         await this.$store.dispatch(
@@ -71,6 +71,7 @@ export default {
           { name, network },
           { root: true }
         )
+        this.$store.dispatch('steps/fetchDeploymentStatus', {})
       } catch (e) {
         console.error(e)
       }

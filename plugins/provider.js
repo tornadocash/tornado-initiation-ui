@@ -1,3 +1,4 @@
+import networkConfig from '@/networkConfig'
 import { Provider } from '../services'
 
 const MAIN_NET_ID = 1
@@ -7,6 +8,7 @@ const options = {
   config: {
     id: MAIN_NET_ID,
     rpcCallRetryAttempt: 15,
+    rpcUrl: networkConfig.netId1.rpcUrl,
     blockGasLimit: MAIN_NET_BLOCK_GAS_LIMIT,
   },
 }

@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import Web3 from 'web3'
 import { hexToNumber, numberToHex } from 'web3-utils'
 import deployerABI from '../abi/deployer.abi.json'
 import deploymentActions from '../static/deploymentActions.json'
@@ -10,8 +9,7 @@ const state = () => {
 
 const getters = {
   deployerContract: (state, getters, rootState, rootGetters) => (isProxy) => {
-    const { rpcUrls } = rootGetters['provider/getNetwork']
-    const web3 = new Web3(rpcUrls.Infura.url)
+    const web3 = rootGetters['provider/getWeb3']
     return new web3.eth.Contract(
       deployerABI,
       isProxy
