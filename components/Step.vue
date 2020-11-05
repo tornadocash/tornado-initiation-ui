@@ -1,18 +1,21 @@
 <template>
   <div class="step">
-    <diamond :active="!!data.deployerAddress" />
+    <diamond
+      :active="!!data.deployerAddress"
+      :waiting="!canDeploy(data.domain)"
+    />
     <div class="step-body">
       <h4>{{ data.title }}</h4>
-      <h6 v-if="data.domain">
+      <h5 v-if="data.domain" class="deployed">
         ENS:
         <a :href="domainUrl(data.expectedAddress)" target="_blank">{{
           data.domain
         }}</a>
-      </h6>
+      </h5>
       <i18n
         v-if="data.deployerAddress"
         class="deployed"
-        tag="div"
+        tag="h6"
         path="deployedBy"
       >
         <template v-slot:link>
@@ -27,17 +30,32 @@
         <b-icon icon="check" />
         <span>{{ $t('completed') }}</span>
       </div>
-      <b-button
+      <b-tooltip
         v-else
-        type="is-primary"
-        outlined
-        icon-left="tool"
-        :disabled="isNotLoggedIn || !canDeploy(data.domain)"
-        @mousedown="(e) => e.preventDefault()"
-        @click="onDeploy"
+        :label="
+          isNotLoggedIn
+            ? $t('pleaseConnectWallet')
+            : !canDeploy(data.domain)
+            ? $t('dependsOnEns', { ens: data.dependsOn.join(', ') })
+            : ''
+        "
+        position="is-top"
+        multilined
+        :size="isNotLoggedIn ? 'is-small' : 'is-large'"
+        :active="isNotLoggedIn || !canDeploy(data.domain)"
+        append-to-body
       >
-        {{ $t('deploy') }}
-      </b-button>
+        <b-button
+          type="is-primary"
+          outlined
+          icon-left="tool"
+          :disabled="isNotLoggedIn || !canDeploy(data.domain)"
+          @mousedown="(e) => e.preventDefault()"
+          @click="onDeploy"
+        >
+          {{ $t('deploy') }}
+        </b-button>
+      </b-tooltip>
     </div>
   </div>
 </template>

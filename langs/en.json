@@ -22,5 +22,7 @@
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
   "sendingTransaction": "Sending transaction",
-  "viewOnEtherscan": "View on Etherscan"
+  "viewOnEtherscan": "View on Etherscan",
+  "pleaseConnectWallet": "Please connect your wallet first",
+  "dependsOnEns": "This action depends on {ens}"
 }

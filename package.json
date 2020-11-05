@@ -15,7 +15,7 @@
     "gas-price-oracle": "^0.2.2",
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.6",
-    "nuxt-buefy": "^0.4.3",
+    "nuxt-buefy": "^0.4.4",
     "sass-loader": "^10.0.3",
     "vue-i18n": "^8.22.1",
     "web3": "1.2.6"
