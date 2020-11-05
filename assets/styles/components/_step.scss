@@ -4,15 +4,18 @@
 
 .step {
   margin: 1.25rem 0;
-  background: #1F1F1F;
+  background-color: #151515;
   border-radius: 6px;
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
 
-  @include mobile {
-    flex-wrap: wrap;
+  .step-container {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    background: #1F1F1F;
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
   }
 
   &:first-child {
@@ -21,18 +24,26 @@
 
 
   .diamond {
-    margin-right: 1.25rem;
+    margin: 1.25rem 0 1.25rem 1.25rem;
 
     @include mobile {
-      align-self: flex-start;
+      flex: none;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
     }
   }
 
   &-body {
+    padding: 1.25rem;
     flex-grow: 1;
 
     @include mobile {
-      width: calc(100% - 60px - 1.25rem);
+      flex: none;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 0;
     }
 
     h4 {
@@ -51,23 +62,49 @@
       color: #6B6B6B;
       text-overflow: ellipsis;
       overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  &-more-button {
+    padding: 1.25rem;
+
+    @include mobile {
+      flex: none;
+      width: 100%;
+      text-align: center;
+      padding: .75rem 1.25rem;
+    }
+
+    .button {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+      color: $primary;
+      font-size: 0.875rem;
+
+      &:focus:not(:active), &.is-focused:not(:active) {
+        box-shadow: none;
+      }
     }
   }
 
   &-tail {
     background-color: #191919;
     align-self: stretch;
-    margin: -1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1.25rem;
     width: 148px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 
     @include mobile {
-      margin-top: 1.25rem;
-      flex-basis: 100%;
-      flex-grow: 1;
+      flex: none;
+      width: 100%;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 6px;
     }
 
     .completed {
@@ -80,6 +117,14 @@
       .icon {
         margin-right: 0.5em;
       }
+    }
+  }
+
+  &-more {
+    font-size: 0.813rem;
+
+    p {
+      padding: 1.25rem;
     }
   }
 }

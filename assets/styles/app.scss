@@ -39,6 +39,10 @@
   background-image: url('../images/discoverer.svg');
   background-size: contain;
   background-repeat: no-repeat;
+
+  @include mobile {
+    margin-top: -1.5rem;
+  }
 }
 
 .delete {
