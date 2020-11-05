@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Web3 from 'web3'
-import { numberToHex } from 'web3-utils'
+import { hexToNumber, numberToHex } from 'web3-utils'
 import deployerABI from '../abi/deployer.abi.json'
 import deploymentActions from '../static/deploymentActions.json'
 
@@ -9,10 +9,15 @@ const state = () => {
 }
 
 const getters = {
-  deployerContract: (state, getters, rootState, rootGetters) => {
+  deployerContract: (state, getters, rootState, rootGetters) => (isProxy) => {
     const { rpcUrls } = rootGetters['provider/getNetwork']
     const web3 = new Web3(rpcUrls.Infura.url)
-    return new web3.eth.Contract(deployerABI, deploymentActions.deployer)
+    return new web3.eth.Contract(
+      deployerABI,
+      isProxy
+        ? deploymentActions.deployer
+        : deploymentActions.actions[0].expectedAddress
+    )
   },
 }
 
@@ -21,20 +26,15 @@ const mutations = {}
 const actions = {
   async deployContract(
     { state, dispatch, getters, rootGetters, commit, rootState },
-    { domain }
+    { action }
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
+      const isProxy = action.domain === 'deployer.deploy.tornadocash.eth'
       const ethAccount = rootGetters['provider/getAccount']
       const web3 = rootGetters['provider/getWeb3']
-      const { salt } = deploymentActions
-      const { bytecode, expectedAddress } = deploymentActions.actions.filter(
-        (action) => {
-          return action.domain === domain
-        }
-      )[0]
 
-      const code = await web3.eth.getCode(expectedAddress)
+      const code = await web3.eth.getCode(action.expectedAddress)
       console.log('code', code)
       if (code !== '0x') {
         dispatch(
@@ -52,17 +52,39 @@ const actions = {
 
       const gasPrice = rootGetters['gasPrice/fastGasPrice']
 
-      const data = getters.deployerContract.methods
-        .deploy(bytecode, salt)
+      const data = getters
+        .deployerContract(isProxy)
+        .methods.deploy(action.bytecode, deploymentActions.salt)
         .encodeABI()
-
+      const callParamsEstimate = {
+        method: 'eth_estimateGas',
+        params: [
+          {
+            from: ethAccount,
+            to: getters.deployerContract(isProxy)._address,
+            // gas: numberToHex(6e6),
+            gasPrice,
+            value: `0x0`,
+            data,
+          },
+        ],
+        from: ethAccount,
+      }
+      const gasEstimate =
+        action.domain === 'deployer.deploy.tornadocash.eth'
+          ? numberToHex(1e6)
+          : await dispatch('provider/sendRequest', callParamsEstimate, {
+              root: true,
+            })
+      const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
+      console.log('xyu', gasWithBuffer)
       const callParams = {
         method: 'eth_sendTransaction',
         params: [
           {
             from: ethAccount,
-            to: getters.deployerContract._address,
-            gas: numberToHex(6e6),
+            to: getters.deployerContract(isProxy)._address,
+            gas: numberToHex(gasWithBuffer),
             gasPrice,
             value: 0,
             data,

@@ -3,6 +3,12 @@
     <diamond :active="!!data.deployerAddress" />
     <div class="step-body">
       <h4>{{ data.title }}</h4>
+      <h6 v-if="data.domain">
+        ENS:
+        <a :href="domainUrl(data.expectedAddress)" target="_blank">{{
+          data.domain
+        }}</a>
+      </h6>
       <i18n
         v-if="data.deployerAddress"
         class="deployed"
@@ -10,7 +16,9 @@
         path="deployedBy"
       >
         <template v-slot:link>
-          <a href="#">{{ data.deployerAddress }}</a>
+          <a :href="txHash(data.deployTransaction)" target="_blank">{{
+            data.deployerAddress
+          }}</a>
         </template>
       </i18n>
     </div>
@@ -24,7 +32,7 @@
         type="is-primary"
         outlined
         icon-left="tool"
-        :disabled="isNotLoggedIn"
+        :disabled="isNotLoggedIn || !canDeploy(data.domain)"
         @mousedown="(e) => e.preventDefault()"
         @click="onDeploy"
       >
@@ -50,6 +58,7 @@ export default {
   },
   computed: {
     ...mapGetters('provider', ['getProviderName']),
+    ...mapGetters('steps', ['canDeploy']),
     isNotLoggedIn() {
       return !this.getProviderName
     },
@@ -59,7 +68,13 @@ export default {
     // todo pass ens domain here
     onDeploy(/* domain */) {
       // console.log('this.props', this.data)
-      this.deployContract({ domain: this.data.domain })
+      this.deployContract({ action: this.data })
+    },
+    domainUrl(address) {
+      return `https://etherscan.io/address/${address}`
+    },
+    txHash(txHash) {
+      return `https://etherscan.io/tx/${txHash}`
     },
   },
 }
