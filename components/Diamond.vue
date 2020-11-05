@@ -18,7 +18,7 @@
       cx="30"
       cy="30"
       r="23.5"
-      fill="#191919"
+      :fill="active ? '#276C4E' : '#191919'"
       :stroke="active ? '#44F1A6' : '#3F3F3F'"
     />
     <path
