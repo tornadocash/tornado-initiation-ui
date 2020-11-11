@@ -132,7 +132,6 @@ const actions = {
               title: 'contractDeployed',
               type: 'success',
             },
-            interval: true,
           },
           { root: true }
         )
@@ -146,7 +145,6 @@ const actions = {
               title: 'transactionFailed',
               type: 'danger',
             },
-            interval: true,
           },
           { root: true }
         )

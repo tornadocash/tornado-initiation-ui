@@ -33,10 +33,7 @@ export const actions = {
       resolve(id)
     })
   },
-  addNoticeTimer({ commit, dispatch }, { id, interval }) {
-    if (interval === true || !interval) {
-      interval = NOTICE_INTERVAL
-    }
+  addNoticeTimer({ commit, dispatch }, { id, interval = NOTICE_INTERVAL }) {
     const timerId = setTimeout(() => {
       dispatch('deleteNotice', { id })
     }, interval)
