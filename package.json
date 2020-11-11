@@ -9,7 +9,7 @@
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js",
-    "deploy-prod": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup --remote=origin"
+    "deploy-prod": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup --remote=temp"
   },
   "dependencies": {
     "core-js": "^3.6.5",
