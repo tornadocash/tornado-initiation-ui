@@ -28,7 +28,7 @@ const actions = {
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
-      const isProxy = action.domain === 'deployer.deploy.tornadocash.eth'
+      const isProxy = action.domain === 'deployer.contract.tornadocash.eth'
       const ethAccount = rootGetters['provider/getAccount']
       const web3 = rootGetters['provider/getWeb3']
 
@@ -69,13 +69,12 @@ const actions = {
         from: ethAccount,
       }
       const gasEstimate =
-        action.domain === 'deployer.deploy.tornadocash.eth'
+        action.domain === 'deployer.contract.tornadocash.eth'
           ? numberToHex(1e6)
           : await dispatch('provider/sendRequest', callParamsEstimate, {
               root: true,
             })
       const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
-      console.log('xyu', gasWithBuffer)
       const callParams = {
         method: 'eth_sendTransaction',
         params: [
@@ -151,6 +150,16 @@ const actions = {
       }
     } catch (e) {
       console.error('deployContract', e.message)
+      await dispatch(
+        'notice/addNotice',
+        {
+          notice: {
+            title: 'cannotBeExecuted',
+            type: 'danger',
+          },
+        },
+        { root: true }
+      )
     } finally {
       dispatch('loading/disable', {}, { root: true })
     }

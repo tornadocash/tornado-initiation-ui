@@ -354,7 +354,12 @@ class Provider {
   _repeatUntilResult(action, totalAttempts, retryAttempt = 1) {
     return new Promise((resolve, reject) => {
       const iteration = async () => {
-        const result = await action()
+        let result
+        try {
+          result = await action()
+        } catch (e) {
+          reject(e)
+        }
 
         if (!result) {
           if (retryAttempt <= totalAttempts) {
