@@ -12,6 +12,7 @@
     "deploy-prod": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup --remote=temp"
   },
   "dependencies": {
+    "@nuxtjs/provider": "https://github.com/tornadocash/provider",
     "core-js": "^3.6.5",
     "gas-price-oracle": "^0.2.2",
     "node-sass": "^4.14.1",
