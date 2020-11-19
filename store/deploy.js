@@ -24,7 +24,7 @@ const mutations = {}
 const actions = {
   async deployContract(
     { state, dispatch, getters, rootGetters, commit, rootState },
-    { action }
+    { action, index }
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
@@ -103,6 +103,11 @@ const actions = {
       })
       console.log('txHash', txHash)
       dispatch('loading/disable', {}, { root: true })
+      dispatch(
+        'steps/setPendingState',
+        { status: true, stepIndex: index },
+        { root: true }
+      )
 
       const noticeId = await dispatch(
         'notice/addNotice',
@@ -131,6 +136,7 @@ const actions = {
               title: 'contractDeployed',
               type: 'success',
             },
+            interval: 20000,
           },
           { root: true }
         )
@@ -144,6 +150,7 @@ const actions = {
               title: 'transactionFailed',
               type: 'danger',
             },
+            interval: 20000,
           },
           { root: true }
         )
@@ -162,6 +169,11 @@ const actions = {
       )
     } finally {
       dispatch('loading/disable', {}, { root: true })
+      dispatch(
+        'steps/setPendingState',
+        { status: false, stepIndex: index },
+        { root: true }
+      )
     }
   },
 }

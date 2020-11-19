@@ -18,7 +18,9 @@ export default {
       localStorage.setItem('provider', { name, network })
 
       const account = await this.$provider.initProvider(getters.getProvider)
-      await dispatch('checkNetworkVersion')
+      const netId = await dispatch('checkNetworkVersion')
+
+      this.$provider.initWeb3(networkConfig[`netId${netId}`].rpcUrls.Infura.url)
 
       commit(SET_ACCOUNT, account)
 
@@ -31,6 +33,7 @@ export default {
     try {
       const id = await this.$provider.checkNetworkVersion()
       commit(SET_NETWORK, { ...networkConfig[`netId${id}`], id: Number(id) })
+      return id
     } catch (err) {
       throw new Error(err.message)
     }

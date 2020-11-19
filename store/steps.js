@@ -22,6 +22,7 @@ const getters = {
 }
 
 const SET_DEPLOYER = 'SET_DEPLOYER'
+const SET_PENDING_STATE = 'SET_PENDING_STATE'
 const mutations = {
   [SET_DEPLOYER](state, { stepIndex, deployerAddress, deployTransaction }) {
     this._vm.$set(state.steps[stepIndex], 'deployerAddress', deployerAddress)
@@ -30,6 +31,9 @@ const mutations = {
       'deployTransaction',
       deployTransaction
     )
+  },
+  [SET_PENDING_STATE](state, { status, stepIndex }) {
+    this._vm.$set(state.steps[stepIndex], 'isPending', status)
   },
 }
 
@@ -48,13 +52,25 @@ const actions = {
       if (!step) {
         continue
       }
-      console.log('event', event)
       commit(SET_DEPLOYER, {
         stepIndex: state.steps.indexOf(step),
         deployerAddress: event.returnValues.sender,
         deployTransaction: event.transactionHash,
       })
     }
+  },
+  statusPooling({ dispatch }) {
+    setTimeout(async () => {
+      try {
+        console.log('Fetching deployment status...')
+        await dispatch('fetchDeploymentStatus')
+      } finally {
+        dispatch('statusPooling')
+      }
+    }, 15000)
+  },
+  setPendingState({ commit }, { status, stepIndex }) {
+    commit(SET_PENDING_STATE, { status, stepIndex })
   },
 }
 export default {

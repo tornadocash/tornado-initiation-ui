@@ -46,11 +46,11 @@ export const actions = {
     }
   },
   addNoticeWithInterval({ dispatch }, { notice, interval }) {
-    return new Promise((resolve) => {
-      dispatch('addNotice', { notice }).then((id) => {
-        dispatch('addNoticeTimer', { id, interval })
-        resolve(id)
-      })
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (resolve) => {
+      const id = await dispatch('addNotice', { notice })
+      dispatch('addNoticeTimer', { id, interval })
+      resolve(id)
     })
   },
   deleteNotice({ state, commit, dispatch }, { id }) {

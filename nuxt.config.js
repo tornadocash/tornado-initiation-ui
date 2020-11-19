@@ -70,7 +70,7 @@ export default {
         },
       },
     ],
-    '@nuxtjs/provider',
+    'nuxt-web3-provider',
   ],
 
   provider: {

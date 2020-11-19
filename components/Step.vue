@@ -54,7 +54,9 @@
             type="is-primary"
             outlined
             icon-left="tool"
-            :disabled="isNotLoggedIn || !canDeploy(data.domain)"
+            :disabled="
+              isNotLoggedIn || !canDeploy(data.domain) || data.isPending
+            "
             @mousedown="(e) => e.preventDefault()"
             @click="onDeploy"
           >
@@ -101,10 +103,8 @@ export default {
   },
   methods: {
     ...mapActions('deploy', ['deployContract']),
-    // todo pass ens domain here
-    onDeploy(/* domain */) {
-      // console.log('this.props', this.data)
-      this.deployContract({ action: this.data })
+    onDeploy() {
+      this.deployContract({ action: this.data, index: this.$vnode.key })
     },
     domainUrl(address) {
       return `https://etherscan.io/address/${address}`

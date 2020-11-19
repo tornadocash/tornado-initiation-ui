@@ -1410,13 +1410,6 @@
     consola "^2.11.3"
     eslint-loader "^4.0.2"
 
-"@nuxtjs/provider@https://github.com/tornadocash/provider":
-  version "0.0.5"
-  resolved "https://github.com/tornadocash/provider#cf186e3f2b852b95e51959855a61171309c8f478"
-  dependencies:
-    web3 "^1.3.0"
-    web3-utils "^1.3.0"
-
 "@nuxtjs/youch@^4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-4.2.3.tgz#36f8b22df5a0efaa81373109851e1d857aca6bed"
@@ -7177,6 +7170,14 @@ nuxt-buefy@^0.4.4:
   integrity sha512-bV0k3+S1g8+kQLlLXhx7qam0YC4v6KfO5b6KfgmOWuU6Ro0BvSjKUiFvEsbJdCG5eRoxOIohpLLf48SOoFyDcQ==
   dependencies:
     buefy "^0.9.4"
+
+nuxt-web3-provider@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/nuxt-web3-provider/-/nuxt-web3-provider-0.1.1.tgz#8311b21444cf07e9f460c5ea4468c126c067e402"
+  integrity sha512-okYZwF0EsG5ukfYYCyFImnGQOCYvZLKKj2lUJfNaRbfcTR8KTbhxKBpuNtYA7V0ZJMdSQ3qbJ8ZQW64IoM9soA==
+  dependencies:
+    web3 "^1.3.0"
+    web3-utils "^1.3.0"
 
 nuxt@^2.14.6:
   version "2.14.6"

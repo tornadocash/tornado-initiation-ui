@@ -36,11 +36,12 @@ export default {
       })
     }
     this.fetchDeploymentStatus()
+    this.statusPooling()
     this.fetchGasPrice()
   },
   methods: {
     ...mapActions('provider', ['initProvider']),
-    ...mapActions('steps', ['fetchDeploymentStatus']),
+    ...mapActions('steps', ['statusPooling', 'fetchDeploymentStatus']),
     ...mapActions('gasPrice', ['fetchGasPrice']),
   },
 }
