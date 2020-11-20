@@ -1,6 +1,6 @@
 <template>
   <div class="steps">
-    <step v-for="(step, index) in steps" :key="index" :data="step" />
+    <step v-for="(step, index) in getData" :key="index" :data="step" />
   </div>
 </template>
 
@@ -14,6 +14,23 @@ export default {
   },
   computed: {
     ...mapState('steps', ['steps']),
+    ...mapState('airdrop', ['airdrops']),
+    getData() {
+      if (Array.isArray(this.airdrops)) {
+        return this.steps.map((step, index) => {
+          if (step.contract === 'Airdrop.sol') {
+            return {
+              ...step,
+              airdrops: this.airdrops[index - this.airdrops.length + 2],
+            }
+          }
+
+          return step
+        })
+      }
+
+      return this.steps
+    },
   },
 }
 </script>

@@ -67,7 +67,28 @@
     </div>
     <transition-expand>
       <div v-show="isExpanded" class="step-more">
-        <p>{{ data.description }}</p>
+        <p v-show="!data.airdrops">
+          {{ data.description }}
+        </p>
+        <div
+          class="columns is-multiline mt-3 is-gapless is-justify-content-space-around"
+        >
+          <div
+            v-for="(airdrop, index) in data.airdrops"
+            :key="index"
+            style="flex: none"
+            class="column"
+          >
+            <div class="p-3">
+              Address:
+              <a :href="domainUrl(airdrop.address)" target="_blank">
+                {{ airdrop.address }}
+              </a>
+              <br />
+              <span>Value: {{ airdrop.value }} vTORN</span>
+            </div>
+          </div>
+        </div>
       </div>
     </transition-expand>
   </div>
