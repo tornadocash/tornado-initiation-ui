@@ -14,14 +14,17 @@ export default {
   },
   computed: {
     ...mapState('steps', ['steps']),
-    ...mapState('airdrop', ['airdrops']),
+    ...mapState('airdrop', ['airdrops', 'notificationIndex']),
     getData() {
       if (Array.isArray(this.airdrops)) {
         return this.steps.map((step, index) => {
           if (step.contract === 'Airdrop.sol') {
+            const dropIndex = index - this.airdrops.length + 2
+
             return {
               ...step,
-              airdrops: this.airdrops[index - this.airdrops.length + 2],
+              airdrops: this.airdrops[dropIndex],
+              isActive: this.notificationIndex === dropIndex,
             }
           }
 

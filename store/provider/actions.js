@@ -25,6 +25,7 @@ export default {
       commit(SET_ACCOUNT, account)
 
       await dispatch('getBalance', account)
+      dispatch('airdrop/checkAddress', {}, { root: true })
     } catch (err) {
       throw new Error(err.message)
     }

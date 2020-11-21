@@ -16,6 +16,12 @@
         </template>
       </i18n>
       <a
+        v-if="typeof notice.callback === 'function'"
+        @click="callbackWithClose(notice.id, notice.callback)"
+      >
+        Scroll to voucher
+      </a>
+      <a
         v-if="notice.txHash"
         :href="txExplorerUrl(notice.txHash)"
         target="_blank"
@@ -35,6 +41,10 @@ export default {
   },
   methods: {
     ...mapActions('notice', ['deleteNotice']),
+    callbackWithClose(id, callback) {
+      callback()
+      this.deleteNotice({ id })
+    },
     close(id) {
       this.deleteNotice({ id })
     },

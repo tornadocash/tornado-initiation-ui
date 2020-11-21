@@ -1,0 +1,61 @@
+.b-table {
+
+  .table-wrapper {
+    border-radius: 6px;
+  }
+
+  .table {
+    a {
+      color: $primary;
+      text-decoration: underline;
+    }
+
+    th {
+      font-weight: $weight-normal;
+    }
+
+    td {
+      border-color: rgba($primary, .5)
+    }
+
+    td, th {
+      vertical-align: middle;
+    }
+
+    tbody {
+      tr {
+
+        &:last-child {
+          td {
+            border-bottom-width: 1px;
+          }
+        }
+
+        &:not(.is-selected) {
+          &:nth-child(odd) {
+            background-color: $table-striped-row-even-background-color;
+          }
+
+          &:hover {
+            background-color: $table-row-hover-background-color;
+            &:nth-child(odd) {
+              background-color: $table-striped-row-even-hover-background-color;
+            }
+          }
+        }
+
+        &:not(.is-selected).is-empty {
+          background-color: transparent;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown.is-expanded {
+    min-width: 75px;
+  }
+}

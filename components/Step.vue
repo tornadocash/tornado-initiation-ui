@@ -1,5 +1,5 @@
 <template>
-  <div class="step">
+  <div :id="data.isActive ? 'current' : ''" class="step">
     <div class="step-container">
       <diamond
         :active="!!data.deployerAddress"
@@ -20,16 +20,19 @@
           path="deployedBy"
         >
           <template v-slot:link>
-            <a :href="txHash(data.deployTransaction)" target="_blank">{{
+            <a :href="domainUrl(data.deployTransaction)" target="_blank">{{
               data.deployerAddress
             }}</a>
           </template>
         </i18n>
       </div>
       <div class="step-more-button">
-        <b-button size="is-small" @click="isExpanded = !isExpanded">{{
-          isExpanded ? 'Less' : 'More'
-        }}</b-button>
+        <b-button
+          size="is-small"
+          :class="data.isActive ? 'button--active' : ''"
+          @click="isExpanded = !isExpanded"
+          >{{ isExpanded ? 'Less' : 'More' }}</b-button
+        >
       </div>
       <div class="step-tail">
         <div v-if="data.deployerAddress" class="completed">
@@ -70,25 +73,25 @@
         <p v-show="!data.airdrops">
           {{ data.description }}
         </p>
-        <div
-          class="columns is-multiline mt-3 is-gapless is-justify-content-space-around"
+        <b-table
+          v-show="data.airdrops"
+          :data="data.airdrops"
+          :sticky-header="true"
         >
-          <div
-            v-for="(airdrop, index) in data.airdrops"
-            :key="index"
-            style="flex: none"
-            class="column"
+          <b-table-column
+            v-slot="props"
+            field="address"
+            label="Address"
+            :class="data.isActive ? 'is-selected' : ''"
           >
-            <div class="p-3">
-              Address:
-              <a :href="domainUrl(airdrop.address)" target="_blank">
-                {{ airdrop.address }}
-              </a>
-              <br />
-              <span>Value: {{ airdrop.value }} vTORN</span>
-            </div>
-          </div>
-        </div>
+            <a :href="domainUrl(props.row.address)" target="_blank">{{
+              props.row.address
+            }}</a>
+          </b-table-column>
+          <b-table-column v-slot="props" field="value" label="Value">
+            {{ Number(props.row.value).toFixed(4) }} vTORN
+          </b-table-column>
+        </b-table>
       </div>
     </transition-expand>
   </div>

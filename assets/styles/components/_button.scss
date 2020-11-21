@@ -1,6 +1,19 @@
 .button {
   font-weight: 700;
 
+  &--active {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      right: -6px;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      border-radius: 50%;
+    }
+  }
+
   &.is-icon {
     width: 1.5rem;
     height: 1.5rem;

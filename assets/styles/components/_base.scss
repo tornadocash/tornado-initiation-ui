@@ -71,6 +71,16 @@ $dropdown-item-active-color: $white;
 $dropdown-content-padding-bottom: 0;
 $dropdown-content-padding-top: 0;
 
+$table-background-color: #151515;
+$table-color: $white;
+$table-head-cell-color: $white;
+$table-head-cell-border-width: 0 0 4px;
+$table-cell-border: 1px solid $primary;
+$table-striped-row-even-background-color: #1F1F1F;
+$table-row-hover-background-color: rgba($primary, .154);
+$table-striped-row-even-hover-background-color: rgba($primary, .154);
+$table-cell-padding: 1.5em 1.25rem;
+
 $loading-background-legacy: #000;
 $loading-background: rgba(0,0,0,0.95);
 
