@@ -77,13 +77,9 @@
           v-show="data.airdrops"
           :data="data.airdrops"
           :sticky-header="true"
+          :row-class="(row) => row.address === this.getAccount && 'is-selected'"
         >
-          <b-table-column
-            v-slot="props"
-            field="address"
-            label="Address"
-            :class="data.isActive ? 'is-selected' : ''"
-          >
+          <b-table-column v-slot="props" field="address" label="Address">
             <a :href="domainUrl(props.row.address)" target="_blank">{{
               props.row.address
             }}</a>
@@ -119,7 +115,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('provider', ['getProviderName']),
+    ...mapGetters('provider', ['getProviderName', 'getAccount']),
     ...mapGetters('steps', ['canDeploy']),
     isNotLoggedIn() {
       return !this.getProviderName
