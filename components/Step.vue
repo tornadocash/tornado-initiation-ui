@@ -20,7 +20,7 @@
           path="deployedBy"
         >
           <template v-slot:link>
-            <a :href="domainUrl(data.deployTransaction)" target="_blank">{{
+            <a :href="txExplorerUrl(data.deployTransaction)" target="_blank">{{
               data.deployerAddress
             }}</a>
           </template>
@@ -117,6 +117,7 @@ export default {
   computed: {
     ...mapGetters('provider', ['getProviderName', 'getAccount']),
     ...mapGetters('steps', ['canDeploy']),
+    ...mapGetters('txStorage', ['txExplorerUrl']),
     isNotLoggedIn() {
       return !this.getProviderName
     },
