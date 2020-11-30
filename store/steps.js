@@ -41,7 +41,7 @@ const actions = {
   async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
     const deployContract = rootGetters['deploy/deployerContract'](false)
     const events = await deployContract.getPastEvents('Deployed', {
-      fromBlock: 21895260,
+      fromBlock: 11362293,
       toBlock: 'latest',
     })
     for (const event of events) {
