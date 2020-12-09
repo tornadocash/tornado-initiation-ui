@@ -77,7 +77,7 @@
           v-show="data.airdrops"
           :data="data.airdrops"
           :sticky-header="true"
-          :row-class="(row) => row.address === this.getAccount && 'is-selected'"
+          :row-class="(row) => row.address === getAccount && 'is-selected'"
         >
           <b-table-column v-slot="props" field="address" label="Address">
             <a :href="domainUrl(props.row.address)" target="_blank">{{
@@ -129,9 +129,6 @@ export default {
     },
     domainUrl(address) {
       return `https://etherscan.io/address/${address}`
-    },
-    txHash(txHash) {
-      return `https://etherscan.io/tx/${txHash}`
     },
   },
 }
