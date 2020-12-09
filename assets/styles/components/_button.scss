@@ -4,13 +4,13 @@
   &--active {
     &::after {
       content: '';
-      position: absolute;
-      top: 6px;
-      right: -6px;
-      width: 8px;
-      height: 8px;
-      background-color: rgba($primary, .154);
-      border-radius: 50%;
+      margin-left: 0.15rem;
+      margin-top: -0.55rem;
+      width: 4px;
+      height: 4px;
+      background-color: $primary;
+      border-radius: 100%;
+      box-shadow: 0 0 1px 1px $primary;
     }
   }
 
@@ -29,10 +29,11 @@
     .trnd {
       width: 100%;
       height: 100%;
-      background-color: #6B6B6B;
+      background-color: #6b6b6b;
     }
 
-    &:focus:not(:active), &.is-focused:not(:active) {
+    &:focus:not(:active),
+    &.is-focused:not(:active) {
       box-shadow: none;
     }
   }
@@ -46,7 +47,8 @@
       background-color: $primary;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       .trnd {
         background-color: $primary-invert;
       }
@@ -62,18 +64,21 @@
   .icon {
     &:first-child:not(:last-child) {
       margin-left: -0.15em;
-      margin-right: 0.5em; }
+      margin-right: 0.5em;
+    }
     &:last-child:not(:first-child) {
       margin-left: 0.5em;
-      margin-right: -0.15em; }
+      margin-right: -0.15em;
+    }
     &:first-child:last-child {
       margin-left: 0;
-      margin-right: 0; }
+      margin-right: 0;
+    }
   }
 
   &:not(.is-small) {
     span:not(.icon):not(.b-tooltip):first-child:last-child {
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
   }
 }
@@ -84,9 +89,9 @@
   }
 
   .break {
-    margin: 0 1.25rem .5rem 0;
+    margin: 0 1.25rem 0.5rem 0;
     width: 1px;
     align-self: stretch;
-    background-color: #2A2A2A;
+    background-color: #2a2a2a;
   }
 }
