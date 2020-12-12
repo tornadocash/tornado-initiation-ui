@@ -11,7 +11,7 @@ const networkConfig = {
     rpcUrls: {
       Infura: {
         name: 'Infura',
-        url: 'https://mainnet.infura.io/v3/da564f81919d40c9a3bcaee4ff44438d',
+        url: 'https://mainnet.infura.io/v3/2884a3281c1d4ae8952e25c84d76bced',
       },
       MyCrypto: { name: 'MyCrypto', url: 'https://api.mycryptoapi.com/eth' },
     },
@@ -29,7 +29,7 @@ const networkConfig = {
     rpcUrls: {
       Infura: {
         name: 'Infura',
-        url: 'https://goerli.infura.io/v3/da564f81919d40c9a3bcaee4ff44438d',
+        url: 'https://goerli.infura.io/v3/2884a3281c1d4ae8952e25c84d76bced',
       },
     },
     pollInterval: 200,
