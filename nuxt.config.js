@@ -78,5 +78,27 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {
+      config.output.publicPath = './_nuxt/'
+    },
+    // splitChunks: {
+    //   commons: false
+    // }
+  },
+
+  router: {
+    linkActiveClass: '',
+    linkExactActiveClass: 'is-active',
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'ipfs-root',
+        path: '*',
+        component: resolve(__dirname, 'pages/index.vue'),
+      })
+    },
+  },
 }

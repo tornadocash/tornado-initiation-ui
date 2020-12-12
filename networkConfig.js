@@ -17,21 +17,20 @@ const networkConfig = {
     },
     pollInterval: 60,
   },
-  netId42: {
+  netId5: {
     rpcCallRetryAttempt: 15,
     gasPrices: { instant: 80, fast: 50, standard: 25, low: 8 },
-    currencyName: 'kETH',
+    currencyName: 'gETH',
     explorerUrl: {
-      tx: 'https://kovan.etherscan.io/tx/',
-      address: 'https://kovan.etherscan.io/address/',
+      tx: 'https://goerli.etherscan.io/tx/',
+      address: 'https://goerli.etherscan.io/address/',
     },
-    networkName: 'Kovan',
+    networkName: 'goerli',
     rpcUrls: {
       Infura: {
         name: 'Infura',
-        url: 'https://kovan.infura.io/v3/9b8f0ddb3e684ece890f594bf1710c88',
+        url: 'https://goerli.infura.io/v3/da564f81919d40c9a3bcaee4ff44438d',
       },
-      'POA.network': { name: 'POA.network', url: 'https://kovan.poa.network' },
     },
     pollInterval: 200,
   },
