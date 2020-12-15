@@ -20,7 +20,7 @@
     "nuxt-buefy": "^0.4.4",
     "push-dir": "^0.4.1",
     "sass-loader": "^10.0.3",
-    "vue-i18n": "^8.22.1",
+    "vue-i18n": "^8.22.2",
     "web3": "1.2.6"
   },
   "devDependencies": {
