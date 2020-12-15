@@ -1,0 +1,130 @@
+.steps {
+  padding-top: 1.25rem;
+}
+
+.step {
+  margin: 1.25rem 0;
+  background-color: #151515;
+  border-radius: 6px;
+
+  .step-container {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    background: #1F1F1F;
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+
+  .diamond {
+    margin: 1.25rem 0 1.25rem 1.25rem;
+
+    @include mobile {
+      flex: none;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &-body {
+    padding: 1.25rem;
+    flex-grow: 1;
+
+    @include mobile {
+      flex: none;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 0;
+    }
+
+    h4 {
+      font-weight: 700;
+      @include until(576px) {
+        font-size: 0.9rem;
+      }
+
+      + .deployed {
+        margin-top: .25rem;
+      }
+    }
+
+    .deployed {
+      font-size: 0.813rem;
+      color: #6B6B6B;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  &-more-button {
+    padding: 1.25rem;
+
+    @include mobile {
+      flex: none;
+      width: 100%;
+      text-align: center;
+      padding: .75rem 1.25rem;
+    }
+
+    .button {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+      color: $primary;
+      font-size: 0.875rem;
+
+      &:focus:not(:active), &.is-focused:not(:active) {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &-tail {
+    background-color: #191919;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+    width: 148px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    @include mobile {
+      flex: none;
+      width: 100%;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 6px;
+    }
+
+    .completed {
+      display: flex;
+      align-items: center;
+      font-size: $size-normal;
+      color: $primary;
+      font-weight: 700;
+
+      .icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  &-more {
+    font-size: 0.813rem;
+
+    p {
+      padding: 1.25rem;
+    }
+  }
+}

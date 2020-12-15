@@ -1,0 +1,15 @@
+{
+  "closeNotification": "关闭通知",
+  "yourWallet": "你的钱包",
+  "pleaseSelectYourWeb3Wallet": "请选择你的 Web3 钱包:",
+  "otherWallet": "其它钱包",
+  "currentNetworkIsNotSupported": "暂不支持这个网络，请尝试 Kovan 或者主网",
+  "logout": "退出",
+  "connect": "连接",
+  "close": "关闭",
+  "preparingTransactionData": "正在准备交易数据",
+  "viewInExplorer": "在浏览器中查看",
+  "loading": "加载中",
+  "pleaseConfirmTransactionInWallet": "请在 {wallet} 中确认交易",
+  "info": "信息"
+}

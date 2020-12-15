@@ -1,0 +1,16 @@
+{
+  "closeNotification": "Закрыть",
+  "yourWallet": "Подключение кошелька",
+  "pleaseSelectYourWeb3Wallet": "Пожалуйста, выберите Web3-совместимый кошелек:",
+  "otherWallet": "Другой кошелек",
+  "currentNetworkIsNotSupported": "Текущая сеть не поддерживается. Попробуйте Kovan или Mainnet",
+  "logout": "Выйти",
+  "connect": "Подключить",
+  "close": "Закрыть",
+  "preparingTransactionData": "Подготовка данных транзакции",
+  "viewInExplorer": "Посмотреть транзакцию",
+  "loading": "Загрузка",
+  "pleaseConfirmTransactionInWallet": "Пожалуйста, подтвердите транзакцию в {wallet}",
+  "info": "Информация",
+  "pleaseInstallMetamask": "Установите Metamask. Мы рекомендуем использовать этот кошелек."
+}

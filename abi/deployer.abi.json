@@ -1,0 +1,39 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "_initCode",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_salt",
+        "type": "bytes32"
+      }
+    ],
+    "name": "deploy",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "addr",
+        "type": "address"
+      }
+    ],
+    "name": "Deployed",
+    "type": "event"
+  }
+]

@@ -1,0 +1,97 @@
+.button {
+  font-weight: 700;
+
+  &--active {
+    &::after {
+      content: '';
+      margin-left: 0.15rem;
+      margin-top: -0.55rem;
+      width: 4px;
+      height: 4px;
+      background-color: $primary;
+      border-radius: 100%;
+      box-shadow: 0 0 1px 1px $primary;
+    }
+  }
+
+  &.is-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .icon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    .trnd {
+      width: 100%;
+      height: 100%;
+      background-color: #6b6b6b;
+    }
+
+    &:focus:not(:active),
+    &.is-focused:not(:active) {
+      box-shadow: none;
+    }
+  }
+
+  &.is-primary {
+    &.is-outlined {
+      background-color: #182922;
+    }
+
+    .trnd {
+      background-color: $primary;
+    }
+
+    &:hover,
+    &:focus {
+      .trnd {
+        background-color: $primary-invert;
+      }
+    }
+
+    &[disabled] {
+      .trnd {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .icon {
+    &:first-child:not(:last-child) {
+      margin-left: -0.15em;
+      margin-right: 0.5em;
+    }
+    &:last-child:not(:first-child) {
+      margin-left: 0.5em;
+      margin-right: -0.15em;
+    }
+    &:first-child:last-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &:not(.is-small) {
+    span:not(.icon):not(.b-tooltip):first-child:last-child {
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+.buttons {
+  .button.is-icon:not(:last-child):not(.is-fullwidth) {
+    margin-right: 1.25rem;
+  }
+
+  .break {
+    margin: 0 1.25rem 0.5rem 0;
+    width: 1px;
+    align-self: stretch;
+    background-color: #2a2a2a;
+  }
+}
