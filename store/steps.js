@@ -11,7 +11,10 @@ const getters = {
   deployedCount: (state) => {
     const deployed = state.steps.filter((step) => !!step.deployerAddress).length
     const all = state.steps.length
-    return `${deployed}/${all}`
+    return {
+      text: `${deployed}/${all}`,
+      isCompleted: deployed === all,
+    }
   },
   canDeploy: (state) => (domain) => {
     const { dependsOn } = state.steps.find((s) => s.domain === domain)

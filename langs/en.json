@@ -25,5 +25,6 @@
   "sendingTransaction": "Sending transaction",
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
-  "dependsOnEns": "This action depends on {ens}"
+  "dependsOnEns": "This action depends on {ens}",
+  "thankYou": "The governance has been initiated. All contracts are deployed. Thank you for your participation."
 }

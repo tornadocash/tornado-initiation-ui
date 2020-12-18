@@ -3,10 +3,14 @@
     <h1 class="title has-text-centered">
       Tornado.cash <span>Governance</span> Initiation
     </h1>
-    <h2 class="subtitle has-text-centered">{{ $t('pageSubtitle') }}</h2>
+    <h2 v-if="!deployedCount.isCompleted" class="subtitle has-text-centered">
+      {{ $t('pageSubtitle') }}
+    </h2>
+    <h2 v-else class="has-text-centered">{{ $t('thankYou') }}</h2>
 
     <div class="buttons is-centered">
       <b-button
+        v-if="!deployedCount.isCompleted"
         type="is-primary"
         outlined
         icon-left="tool"
@@ -18,7 +22,7 @@
 
     <i18n tag="h3" class="title is-14px mt-6" path="completedTasks">
       <template v-slot:progress>
-        <span>{{ deployedCount }}</span>
+        <span>{{ deployedCount.text }}</span>
       </template>
     </i18n>
 
