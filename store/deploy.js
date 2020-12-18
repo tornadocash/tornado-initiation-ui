@@ -9,7 +9,7 @@ const state = () => {
 
 const getters = {
   deployerContract: (state, getters, rootState, rootGetters) => (isProxy) => {
-    const web3 = rootGetters['provider/getWeb3']
+    const web3 = rootGetters['provider/currentRpc']
     return new web3.eth.Contract(
       deployerABI,
       isProxy
@@ -30,7 +30,7 @@ const actions = {
       dispatch('loading/enable', {}, { root: true })
       const isProxy = action.domain === 'deployer.contract.tornadocash.eth'
       const ethAccount = rootGetters['provider/getAccount']
-      const web3 = rootGetters['provider/getWeb3']
+      const web3 = rootGetters['provider/currentRpc']
 
       const code = await web3.eth.getCode(action.expectedAddress)
       console.log('code', code)

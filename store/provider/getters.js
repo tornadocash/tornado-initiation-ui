@@ -26,6 +26,11 @@ export default {
 
     return Object.freeze(new Web3(provider))
   },
+  currentRpc: (state, getters) => {
+    const network = getters.getNetwork
+    const rpcUrl = network.rpcUrls.Infura.url
+    return Object.freeze(new Web3(rpcUrl))
+  },
   getBalance: (state) => {
     return state.balance
   },
