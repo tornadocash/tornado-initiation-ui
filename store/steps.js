@@ -42,7 +42,7 @@ const mutations = {
 
 const actions = {
   async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
-    const deployContract = rootGetters['deploy/deployerContract'](false)
+    const deployContract = rootGetters['deploy/deployerContract']()
     const events = await deployContract.getPastEvents('Deployed', {
       fromBlock: 0,
       toBlock: 'latest',

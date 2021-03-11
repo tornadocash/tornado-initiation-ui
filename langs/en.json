@@ -3,7 +3,7 @@
   "yourWallet": "Your Wallet",
   "pleaseSelectYourWeb3Wallet": "Please select your Web3 compatible wallet:",
   "otherWallet": "Other Wallet",
-  "currentNetworkIsNotSupported": "Current network is not supported. Try Kovan or Mainnet",
+  "currentNetworkIsNotSupported": "Current network is not supported. Try Goerli or Mainnet",
   "logout": "Logout",
   "connect": "Connect",
   "close": "Close",
@@ -17,7 +17,7 @@
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
   "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash Governance protocol.",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash new instances.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
@@ -26,5 +26,5 @@
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
   "dependsOnEns": "This action depends on {ens}",
-  "thankYou": "The governance has been initiated. All contracts are deployed. Thank you for your participation."
+  "thankYou": "All contracts are deployed. Thank you for your participation."
 }

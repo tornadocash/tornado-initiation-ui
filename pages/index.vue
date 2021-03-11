@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title has-text-centered">
-      Tornado.cash <span>Governance</span> Initiation
+      <span>Tornado.cash Instance</span> deployment
     </h1>
     <h2 v-if="!deployedCount.isCompleted" class="subtitle has-text-centered">
       {{ $t('pageSubtitle') }}

@@ -8,14 +8,9 @@ const state = () => {
 }
 
 const getters = {
-  deployerContract: (state, getters, rootState, rootGetters) => (isProxy) => {
+  deployerContract: (state, getters, rootState, rootGetters) => () => {
     const web3 = rootGetters['provider/currentRpc']
-    return new web3.eth.Contract(
-      deployerABI,
-      isProxy
-        ? deploymentActions.deployer
-        : deploymentActions.actions[0].expectedAddress
-    )
+    return new web3.eth.Contract(deployerABI, deploymentActions.deployer)
   },
 }
 
@@ -51,7 +46,7 @@ const actions = {
       const gasPrice = rootGetters['gasPrice/fastGasPrice']
 
       const data = getters
-        .deployerContract(isProxy)
+        .deployerContract()
         .methods.deploy(action.bytecode, deploymentActions.salt)
         .encodeABI()
       const callParamsEstimate = {
@@ -59,7 +54,7 @@ const actions = {
         params: [
           {
             from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
+            to: getters.deployerContract()._address,
             // gas: numberToHex(6e6),
             gasPrice,
             value: `0x0`,
@@ -80,7 +75,7 @@ const actions = {
         params: [
           {
             from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
+            to: getters.deployerContract()._address,
             gas: numberToHex(gasWithBuffer),
             gasPrice,
             value: 0,
