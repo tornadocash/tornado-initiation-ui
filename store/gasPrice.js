@@ -20,7 +20,7 @@ export const getters = {
     return new GasPriceOracle({ defaultRpc: currentRpc })
   },
   fastGasPrice: (state) => {
-    return toHex(toWei(state.fast.toString(), 'gwei'))
+    return toHex(toWei(Math.ceil(state.fast).toString(), 'gwei'))
   },
   lowGasPrice: (state) => {
     return toHex(toWei(state.standard.toString(), 'gwei'))

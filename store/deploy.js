@@ -23,7 +23,6 @@ const actions = {
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
-      const isProxy = action.domain === 'deployer.contract.tornadocash.eth'
       const ethAccount = rootGetters['provider/getAccount']
       const web3 = rootGetters['provider/currentRpc']
 
