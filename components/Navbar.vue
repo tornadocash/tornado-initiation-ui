@@ -5,15 +5,6 @@
         <Logo />
       </b-navbar-item>
     </template>
-    <template slot="start">
-      <b-navbar-item
-        href="https://medium.com/@tornado.cash/tornado-cash-governance-proposal-a55c5c7d0703"
-        target="_blank"
-        class="decorate"
-      >
-        {{ $t('info') }}
-      </b-navbar-item>
-    </template>
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">

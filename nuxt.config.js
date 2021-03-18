@@ -10,8 +10,54 @@ export default {
     title: 'Tornado.cash',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        name: 'viewport',
+        content:
+          'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+      },
+      { name: 'theme-color', content: '#000403' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Ceremony for new Tornado.Cash instances',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Tornado.Cash instance deployment',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Ceremony for new Tornado.Cash instances',
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://tornado.cash',
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://tornado.cash/tw.png',
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Non-custodial, trustless, serverless, private transactions on Ethereum network',
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'Ethereum, ERC20, WBTC, cDAI, dapp, smart contract, decentralized, metamask, zksnark, zero knowledge',
+      },
     ],
     link: [
       { rel: 'manifest', href: '/manifest.json' },
