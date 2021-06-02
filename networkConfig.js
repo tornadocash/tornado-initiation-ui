@@ -1,35 +1,18 @@
 const networkConfig = {
-  netId1: {
+  netId56: {
     rpcCallRetryAttempt: 15,
-    gasPrices: { instant: 80, fast: 50, standard: 25, low: 8 },
-    currencyName: 'ETH',
+    gasPrices: { instant: 21, fast: 5, standard: 5, low: 5 },
+    currencyName: 'BNB',
     explorerUrl: {
-      tx: 'https://etherscan.io/tx/',
-      address: 'https://etherscan.io/address/',
+      tx: 'https://bscscan.com/tx/',
+      address: 'https://bscscan.com/address/',
     },
-    networkName: 'Mainnet',
+    networkName: 'bsc',
     rpcUrls: {
       Infura: {
         name: 'Infura',
-        url: 'https://mainnet.infura.io/v3/2884a3281c1d4ae8952e25c84d76bced',
-      },
-      MyCrypto: { name: 'MyCrypto', url: 'https://api.mycryptoapi.com/eth' },
-    },
-    pollInterval: 60,
-  },
-  netId5: {
-    rpcCallRetryAttempt: 15,
-    gasPrices: { instant: 80, fast: 50, standard: 25, low: 8 },
-    currencyName: 'gETH',
-    explorerUrl: {
-      tx: 'https://goerli.etherscan.io/tx/',
-      address: 'https://goerli.etherscan.io/address/',
-    },
-    networkName: 'goerli',
-    rpcUrls: {
-      Infura: {
-        name: 'Infura',
-        url: 'https://goerli.infura.io/v3/2884a3281c1d4ae8952e25c84d76bced',
+        url:
+          'https://wandering-sparkling-shadow.bsc.quiknode.pro/00115b17f97c1f4c374ac309858015da1cab3e02/',
       },
     },
     pollInterval: 200,

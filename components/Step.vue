@@ -128,7 +128,7 @@ export default {
       this.deployContract({ action: this.data, index: this.$vnode.key })
     },
     domainUrl(address) {
-      return `https://etherscan.io/address/${address}`
+      return `https://bscscan.com/address/${address}`
     },
   },
 }

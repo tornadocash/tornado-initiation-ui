@@ -19,7 +19,7 @@
         v-if="typeof notice.callback === 'function'"
         @click="callbackWithClose(notice.id, notice.callback)"
       >
-        Scroll to voucher
+        {{ $t(notice.message) }}
       </a>
       <a
         v-if="notice.txHash"

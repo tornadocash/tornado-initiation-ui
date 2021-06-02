@@ -25,5 +25,7 @@
   "sendingTransaction": "Sending transaction",
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
-  "dependsOnEns": "This action depends on {ens}"
+  "dependsOnEns": "This action depends on {ens}",
+  "bscOnly": "Please switch your wallet to BSC network",
+  "switchNetwork": "Switch to BSC"
 }

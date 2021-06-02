@@ -12,12 +12,28 @@ import {
 export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
+      const account = await this.$provider.initProvider(getters.getProvider)
+      if (window.ethereum.chainId !== '0x38') {
+        await dispatch(
+          'notice/addNotice',
+          {
+            notice: {
+              title: 'bscOnly',
+              type: 'danger',
+              callback: () => dispatch('addNetwork', { netId: 56 }),
+              message: 'switchNetwork',
+            },
+          },
+          { root: true }
+        )
+        throw new Error('Connect to BSC')
+      }
+
       commit(SET_PROVIDER_NAME, name)
       commit(SET_NETWORK_NAME, network)
 
       localStorage.setItem('provider', { name, network })
 
-      const account = await this.$provider.initProvider(getters.getProvider)
       const netId = await dispatch('checkNetworkVersion')
 
       this.$provider.initWeb3(networkConfig[`netId${netId}`].rpcUrls.Infura.url)
@@ -77,6 +93,28 @@ export default {
       return tx
     } catch (err) {
       throw new Error(err.message)
+    }
+  },
+  async addNetwork(_, { netId }) {
+    const METAMASK_LIST = {
+      56: {
+        chainId: '0x38',
+        chainName: 'Binance Smart Chain',
+        rpcUrls: ['https://bsc-dataseed1.ninicoin.io'],
+        nativeCurrency: {
+          name: 'Binance Chain Native Token',
+          symbol: 'BNB',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://bscscan.com'],
+      },
+    }
+
+    if (METAMASK_LIST[netId]) {
+      await this.$provider.sendRequest({
+        method: 'wallet_addEthereumChain',
+        params: [METAMASK_LIST[netId]],
+      })
     }
   },
 }

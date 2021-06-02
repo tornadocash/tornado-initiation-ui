@@ -5,10 +5,10 @@ const { toHex, toWei } = require('web3-utils')
 
 export const state = () => {
   return {
-    instant: networkConfig.netId1.gasPrices.instant,
-    fast: networkConfig.netId1.gasPrices.fast,
-    standard: networkConfig.netId1.gasPrices.standard,
-    low: networkConfig.netId1.gasPrices.low,
+    instant: networkConfig.netId56.gasPrices.instant,
+    fast: networkConfig.netId56.gasPrices.fast,
+    standard: networkConfig.netId56.gasPrices.standard,
+    low: networkConfig.netId56.gasPrices.low,
     custom: null,
   }
 }
