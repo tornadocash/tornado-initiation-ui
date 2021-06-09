@@ -17,7 +17,7 @@
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
   "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash Governance protocol.",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on BSC chain.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
