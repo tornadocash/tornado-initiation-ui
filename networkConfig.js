@@ -1,21 +1,21 @@
 const networkConfig = {
-  netId56: {
+  netId137: {
     rpcCallRetryAttempt: 15,
-    gasPrices: { instant: 21, fast: 5, standard: 5, low: 5 },
-    currencyName: 'BNB',
+    gasPrices: { instant: 7.5, fast: 5, standard: 1, low: 1 },
+    currencyName: 'MATIC',
     explorerUrl: {
-      tx: 'https://bscscan.com/tx/',
-      address: 'https://bscscan.com/address/',
+      tx: 'https://polygonscan.com/tx/',
+      address: 'https://polygonscan.com/address/',
     },
-    networkName: 'bsc',
+    networkName: 'polygon',
     rpcUrls: {
       Infura: {
         name: 'Infura',
         url:
-          'https://wandering-sparkling-shadow.bsc.quiknode.pro/00115b17f97c1f4c374ac309858015da1cab3e02/',
+          'https://polygon-mainnet.infura.io/v3/da564f81919d40c9a3bcaee4ff44438d',
       },
     },
-    pollInterval: 200,
+    pollInterval: 60,
   },
 }
 

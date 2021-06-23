@@ -51,7 +51,7 @@ const actions = {
     let number = latestBlock.number
     let events = []
     while (true) {
-      const fromBlock = number - 4500
+      const fromBlock = number - 99500
       events = await deployContract.getPastEvents('Deployed', {
         fromBlock,
         toBlock: number,

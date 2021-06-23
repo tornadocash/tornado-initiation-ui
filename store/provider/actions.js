@@ -13,20 +13,20 @@ export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
       const account = await this.$provider.initProvider(getters.getProvider)
-      if (window.ethereum.chainId !== '0x38') {
+      if (window.ethereum.chainId !== '0x89') {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'bscOnly',
+              title: 'polygonOnly',
               type: 'danger',
-              callback: () => dispatch('addNetwork', { netId: 56 }),
+              callback: () => dispatch('addNetwork', { netId: 137 }),
               message: 'switchNetwork',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to BSC')
+        throw new Error('Connect to Polygon')
       }
 
       commit(SET_PROVIDER_NAME, name)
@@ -97,16 +97,16 @@ export default {
   },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      56: {
-        chainId: '0x38',
-        chainName: 'Binance Smart Chain',
-        rpcUrls: ['https://bsc-dataseed1.ninicoin.io'],
+      137: {
+        chainId: '0x89',
+        chainName: 'Matic Mainnet',
+        rpcUrls: ['https://rpc-mainnet.matic.network'],
         nativeCurrency: {
-          name: 'Binance Chain Native Token',
-          symbol: 'BNB',
+          name: 'Matic',
+          symbol: 'MATIC',
           decimals: 18,
         },
-        blockExplorerUrls: ['https://bscscan.com'],
+        blockExplorerUrls: ['https://explorer.matic.network'],
       },
     }
 

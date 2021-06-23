@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title has-text-centered">
-      Tornado.cash <span>BSC</span> Deployment
+      Tornado.cash <span>Polygon</span> Deployment
     </h1>
     <h2 class="subtitle has-text-centered">{{ $t('pageSubtitle') }}</h2>
 
