@@ -17,7 +17,7 @@
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
   "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on BSC chain.",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on xDAI Chain.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
@@ -26,6 +26,6 @@
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
   "dependsOnEns": "This action depends on {ens}",
-  "bscOnly": "Please switch your wallet to BSC network",
-  "switchNetwork": "Switch to BSC"
+  "xDaiOnly": "Please switch your wallet to xDAI Chain",
+  "switchNetwork": "Switch to xDAI"
 }

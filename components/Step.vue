@@ -9,7 +9,7 @@
         <h4>{{ data.title }}</h4>
         <h5 v-if="data.domain" class="deployed">
           ENS:
-          <a :href="domainUrl(data.expectedAddress)" target="_blank">{{
+          <a :href="addressExplorerUrl(data.expectedAddress)" target="_blank">{{
             data.domain
           }}</a>
         </h5>
@@ -80,7 +80,7 @@
           :row-class="(row) => row.address === getAccount && 'is-selected'"
         >
           <b-table-column v-slot="props" field="address" label="Address">
-            <a :href="domainUrl(props.row.address)" target="_blank">{{
+            <a :href="addressExplorerUrl(props.row.address)" target="_blank">{{
               props.row.address
             }}</a>
           </b-table-column>
@@ -117,7 +117,7 @@ export default {
   computed: {
     ...mapGetters('provider', ['getProviderName', 'getAccount']),
     ...mapGetters('steps', ['canDeploy']),
-    ...mapGetters('txStorage', ['txExplorerUrl']),
+    ...mapGetters('txStorage', ['txExplorerUrl', 'addressExplorerUrl']),
     isNotLoggedIn() {
       return !this.getProviderName
     },
@@ -126,9 +126,6 @@ export default {
     ...mapActions('deploy', ['deployContract']),
     onDeploy() {
       this.deployContract({ action: this.data, index: this.$vnode.key })
-    },
-    domainUrl(address) {
-      return `https://bscscan.com/address/${address}`
     },
   },
 }

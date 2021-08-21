@@ -1,18 +1,22 @@
 const networkConfig = {
-  netId56: {
+  netId100: {
     rpcCallRetryAttempt: 15,
-    gasPrices: { instant: 21, fast: 5, standard: 5, low: 5 },
-    currencyName: 'BNB',
-    explorerUrl: {
-      tx: 'https://bscscan.com/tx/',
-      address: 'https://bscscan.com/address/',
+    gasPrices: {
+      instant: 5,
+      fast: 4,
+      standard: 3,
+      low: 1,
     },
-    networkName: 'bsc',
+    currencyName: 'xDAI',
+    explorerUrl: {
+      tx: 'https://blockscout.com/xdai/mainnet/tx/',
+      address: 'https://blockscout.com/xdai/mainnet/address/',
+    },
+    networkName: 'xdai',
     rpcUrls: {
       Infura: {
-        name: 'Infura',
-        url:
-          'https://wandering-sparkling-shadow.bsc.quiknode.pro/00115b17f97c1f4c374ac309858015da1cab3e02/',
+        name: 'xDAI Chain RPC',
+        url: 'https://rpc.xdaichain.com/tornado',
       },
     },
     pollInterval: 200,

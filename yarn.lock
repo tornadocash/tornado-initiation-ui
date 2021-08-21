@@ -5020,10 +5020,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-gas-price-oracle@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/gas-price-oracle/-/gas-price-oracle-0.2.2.tgz#32c57a9aa6bc69152be96812880232efebfecbc6"
-  integrity sha512-I4+rLbc7C1vgYXV+cYY0MKeqdZVna2hXpNfD2fcIvf/wIgvtIYmG9gsmhiaYGSgOE2RSPUs2xf/W4K2nJOoNuQ==
+gas-price-oracle@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/gas-price-oracle/-/gas-price-oracle-0.3.4.tgz#c98f6e24cf4bea96be2fe85383d53601b2ab5761"
+  integrity sha512-bba9zWd2hQ32AuPFDzL8E5QxAzXNfGKR1UZCa14fSYJWc9yo3k7wabITMkGEv0cbKpHmyK/kHhhDTBtugI6eAg==
   dependencies:
     axios "^0.19.2"
     bignumber.js "^9.0.0"

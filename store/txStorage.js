@@ -7,6 +7,10 @@ export const getters = {
     const { explorerUrl } = rootGetters['provider/getNetwork']
     return explorerUrl.tx + txHash
   },
+  addressExplorerUrl: (state, getters, rootState, rootGetters) => (address) => {
+    const { explorerUrl } = rootGetters['provider/getNetwork']
+    return explorerUrl.address + address
+  },
 }
 
 export const actions = {

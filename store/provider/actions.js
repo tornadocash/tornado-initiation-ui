@@ -1,5 +1,6 @@
 import networkConfig from '@/networkConfig'
 import { localStorage } from '@/utillites'
+import { numberToHex } from 'web3-utils'
 import {
   SET_ACCOUNT,
   SET_NETWORK,
@@ -13,20 +14,20 @@ export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
       const account = await this.$provider.initProvider(getters.getProvider)
-      if (window.ethereum.chainId !== '0x38') {
+      if (window.ethereum.chainId !== '0x64') {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'bscOnly',
+              title: 'xDaiOnly',
               type: 'danger',
-              callback: () => dispatch('addNetwork', { netId: 56 }),
+              callback: () => dispatch('switchNetwork', { netId: 100 }),
               message: 'switchNetwork',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to BSC')
+        throw new Error('Connect to xDai')
       }
 
       commit(SET_PROVIDER_NAME, name)
@@ -95,18 +96,33 @@ export default {
       throw new Error(err.message)
     }
   },
+  async switchNetwork({ dispatch }, { netId }) {
+    try {
+      await this.$provider.sendRequest({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: numberToHex(netId) }],
+      })
+    } catch (err) {
+      // This error indicates that the chain has not been added to MetaMask.
+      if (err.message.includes('wallet_addEthereumChain')) {
+        return dispatch('addNetwork', { netId })
+      }
+
+      throw new Error(err.message)
+    }
+  },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      56: {
-        chainId: '0x38',
-        chainName: 'Binance Smart Chain',
-        rpcUrls: ['https://bsc-dataseed1.ninicoin.io'],
+      100: {
+        chainId: '0x64',
+        chainName: 'xDAI Chain',
+        rpcUrls: ['https://rpc.xdaichain.com'],
         nativeCurrency: {
-          name: 'Binance Chain Native Token',
-          symbol: 'BNB',
+          name: 'xDAI',
+          symbol: 'xDAI',
           decimals: 18,
         },
-        blockExplorerUrls: ['https://bscscan.com'],
+        blockExplorerUrls: ['https://blockscout.com/xdai/mainnet'],
       },
     }
 

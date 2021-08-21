@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import Web3 from 'web3'
 import deploymentActions from '../static/deploymentActions.json'
 
 const state = () => {
@@ -41,41 +40,24 @@ const mutations = {
 const actions = {
   async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
     const deployContract = rootGetters['deploy/deployerContract'](false)
-    const web3 = new Web3(rootGetters['provider/getNetwork'].rpcUrls.Infura.url)
-    const code = await web3.eth.getCode(deployContract._address)
-    if (code === '0x') {
-      return
-    }
+    const events = await deployContract.getPastEvents('Deployed', {
+      fromBlock: 0,
+      toBlock: 'latest',
+    })
 
-    const latestBlock = await web3.eth.getBlock('latest')
-    let number = latestBlock.number
-    let events = []
-    while (true) {
-      const fromBlock = number - 4500
-      events = await deployContract.getPastEvents('Deployed', {
-        fromBlock,
-        toBlock: number,
-      })
-      number = fromBlock
-      if (events.length > 0) {
-        for (const event of events) {
-          const step = state.steps.find(
-            (s) => s.expectedAddress === event.returnValues.addr
-          )
+    for (const event of events) {
+      const step = state.steps.find(
+        (s) => s.expectedAddress === event.returnValues.addr
+      )
 
-          if (!step) {
-            continue
-          }
-          commit(SET_DEPLOYER, {
-            stepIndex: state.steps.indexOf(step),
-            deployerAddress: event.returnValues.sender,
-            deployTransaction: event.transactionHash,
-          })
-        }
-        if (events[0].returnValues.addr === deployContract._address) {
-          break
-        }
+      if (!step) {
+        continue
       }
+      commit(SET_DEPLOYER, {
+        stepIndex: state.steps.indexOf(step),
+        deployerAddress: event.returnValues.sender,
+        deployTransaction: event.transactionHash,
+      })
     }
   },
   statusPooling({ dispatch }) {
