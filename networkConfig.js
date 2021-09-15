@@ -1,22 +1,17 @@
 const networkConfig = {
-  netId100: {
+  netId43114: {
     rpcCallRetryAttempt: 15,
-    gasPrices: {
-      instant: 5,
-      fast: 4,
-      standard: 3,
-      low: 1,
-    },
-    currencyName: 'xDAI',
+    gasPrices: { fast: 225, low: 225, custom: 225, standard: 225 },
+    currencyName: 'AVAX',
     explorerUrl: {
-      tx: 'https://blockscout.com/xdai/mainnet/tx/',
-      address: 'https://blockscout.com/xdai/mainnet/address/',
+      tx: 'https://cchain.explorer.avax.network/tx/',
+      address: 'https://cchain.explorer.avax.network/address/',
     },
-    networkName: 'xdai',
+    networkName: 'avalanche',
     rpcUrls: {
       Infura: {
-        name: 'xDAI Chain RPC',
-        url: 'https://rpc.xdaichain.com/tornado',
+        name: 'Avalanche RPC',
+        url: 'https://api.avax.network/ext/bc/C/rpc',
       },
     },
     pollInterval: 200,

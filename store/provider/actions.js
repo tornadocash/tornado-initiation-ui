@@ -14,20 +14,21 @@ export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
       const account = await this.$provider.initProvider(getters.getProvider)
-      if (window.ethereum.chainId !== '0x64') {
+
+      if (window.ethereum.chainId !== '0xa86a') {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'xDaiOnly',
+              title: 'avalancheOnly',
               type: 'danger',
-              callback: () => dispatch('switchNetwork', { netId: 100 }),
+              callback: () => dispatch('switchNetwork', { netId: 43114 }),
               message: 'switchNetwork',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to xDai')
+        throw new Error('Connect to Avalanche')
       }
 
       commit(SET_PROVIDER_NAME, name)
@@ -49,7 +50,13 @@ export default {
   },
   async checkNetworkVersion({ commit, state, dispatch }) {
     try {
-      const id = await this.$provider.checkNetworkVersion()
+      const id = Number(
+        await this.$provider.sendRequest({
+          method: 'eth_chainId',
+          params: [],
+        })
+      )
+
       commit(SET_NETWORK, { ...networkConfig[`netId${id}`], id: Number(id) })
       return id
     } catch (err) {
@@ -113,16 +120,16 @@ export default {
   },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      100: {
-        chainId: '0x64',
-        chainName: 'xDAI Chain',
-        rpcUrls: ['https://rpc.xdaichain.com'],
+      43114: {
+        chainId: '0xA86A',
+        chainName: 'Avalanche Mainnet',
+        rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
         nativeCurrency: {
-          name: 'xDAI',
-          symbol: 'xDAI',
+          name: 'Avalanche',
+          symbol: 'AVAX',
           decimals: 18,
         },
-        blockExplorerUrls: ['https://blockscout.com/xdai/mainnet'],
+        blockExplorerUrls: ['https://cchain.explorer.avax.network'],
       },
     }
 

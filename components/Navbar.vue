@@ -7,7 +7,7 @@
     </template>
     <template slot="start">
       <b-navbar-item
-        href="https://medium.com/@tornado-cash/tornado-cash-deployment-proposal-on-xdai-216903df898c"
+        href="https://medium.com/@tornado-cash/tornado-cash-deployment-proposal-on-avalanche-ee5d69f9e4b0"
         target="_blank"
         class="decorate"
         rel="noreferrer"
