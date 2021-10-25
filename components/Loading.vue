@@ -12,7 +12,6 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState('loading', ['enabled', 'message', 'txHash']),
-    ...mapState('getNetwork', ['getProviderName']),
   },
 }
 </script>

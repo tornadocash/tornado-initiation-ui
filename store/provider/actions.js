@@ -14,20 +14,33 @@ export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
       const account = await this.$provider.initProvider(getters.getProvider)
-      if (window.ethereum.chainId !== '0x64') {
+      const supportedNetworks = [numberToHex(1), numberToHex(100)]
+      if (!supportedNetworks.includes(window.ethereum.chainId)) {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'xDaiOnly',
+              title: 'switchToL1',
               type: 'danger',
-              callback: () => dispatch('switchNetwork', { netId: 100 }),
-              message: 'switchNetwork',
+              callback: () => dispatch('switchNetwork', { netId: 1 }),
+              message: 'switchNetworkToL1',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to xDai')
+        await dispatch(
+          'notice/addNotice',
+          {
+            notice: {
+              title: 'switchToL2',
+              type: 'danger',
+              callback: () => dispatch('switchNetwork', { netId: 100 }),
+              message: 'switchNetworkToL2',
+            },
+          },
+          { root: true }
+        )
+        throw new Error('Connect to L1 or L2')
       }
 
       commit(SET_PROVIDER_NAME, name)

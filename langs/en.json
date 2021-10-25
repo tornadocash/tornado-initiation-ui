@@ -16,8 +16,10 @@
   "deploy": "Deploy",
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
-  "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on xDAI Chain.",
+  "l1": "Layer 1",
+  "l2": "Layer 2",
+  "completedTasks": "Completed {layer} Tasks: {progress}",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash Pool protocol.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
@@ -26,6 +28,8 @@
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
   "dependsOnEns": "This action depends on {ens}",
-  "xDaiOnly": "Please switch your wallet to xDAI Chain",
-  "switchNetwork": "Switch to xDAI"
+  "switchToL1": "Please switch your wallet to Ethereum Mainnet for L1 deployment.",
+  "switchToL2": "Please switch your wallet to xDAI Chain for L2 deployment.",
+  "switchNetworkToL1": "Switch to Mainnet",
+  "switchNetworkToL2": "Switch to xDAI"
 }

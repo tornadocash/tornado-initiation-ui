@@ -1,10 +1,7 @@
 <template>
   <div :id="data.isActive ? 'current' : ''" class="step">
     <div class="step-container">
-      <diamond
-        :active="!!data.deployerAddress"
-        :waiting="!canDeploy(data.domain)"
-      />
+      <diamond :active="!!data.deployerAddress" :waiting="isDeployed" />
       <div class="step-body">
         <h4>{{ data.title }}</h4>
         <h5 v-if="data.domain" class="deployed">
@@ -44,22 +41,20 @@
           :label="
             isNotLoggedIn
               ? $t('pleaseConnectWallet')
-              : !canDeploy(data.domain)
+              : isDeployed
               ? $t('dependsOnEns', { ens: data.dependsOn.join(', ') })
               : ''
           "
           position="is-top"
           multilined
           :size="isNotLoggedIn ? 'is-small' : 'is-large'"
-          :active="isNotLoggedIn || !canDeploy(data.domain)"
+          :active="isNotLoggedIn || isDeployed"
         >
           <b-button
             type="is-primary"
             outlined
             icon-left="tool"
-            :disabled="
-              isNotLoggedIn || !canDeploy(data.domain) || data.isPending
-            "
+            :disabled="isNotLoggedIn || isDeployed || data.isPending"
             @mousedown="(e) => e.preventDefault()"
             @click="onDeploy"
           >
@@ -118,6 +113,9 @@ export default {
     ...mapGetters('provider', ['getProviderName', 'getAccount']),
     ...mapGetters('steps', ['canDeploy']),
     ...mapGetters('txStorage', ['txExplorerUrl', 'addressExplorerUrl']),
+    isDeployed() {
+      return !this.canDeploy(this.data.domain, this.data.isL1Contract)
+    },
     isNotLoggedIn() {
       return !this.getProviderName
     },
@@ -125,7 +123,11 @@ export default {
   methods: {
     ...mapActions('deploy', ['deployContract']),
     onDeploy() {
-      this.deployContract({ action: this.data, index: this.$vnode.key })
+      this.deployContract({
+        action: this.data,
+        index: this.$vnode.key,
+        isL1: this.data.isL1Contract,
+      })
     },
   },
 }

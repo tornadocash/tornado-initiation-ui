@@ -6,12 +6,7 @@
       </b-navbar-item>
     </template>
     <template slot="start">
-      <b-navbar-item
-        href="https://medium.com/@tornado-cash/tornado-cash-deployment-proposal-on-xdai-216903df898c"
-        target="_blank"
-        class="decorate"
-        rel="noreferrer"
-      >
+      <b-navbar-item href="#" target="_blank" class="decorate" rel="noreferrer">
         {{ $t('info') }}
       </b-navbar-item>
     </template>

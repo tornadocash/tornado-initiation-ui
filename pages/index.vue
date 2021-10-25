@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title has-text-centered">
-      Tornado.cash <span>xDAI</span> Deployment
+      Tornado.cash <span>Pool</span> Deployment
     </h1>
     <h2 class="subtitle has-text-centered">{{ $t('pageSubtitle') }}</h2>
 
@@ -17,11 +17,11 @@
     </div>
 
     <i18n tag="h3" class="title is-14px mt-6" path="completedTasks">
+      <template v-slot:layer>{{ $t(getNetwork.isL1 ? 'l1' : 'l2') }}</template>
       <template v-slot:progress>
-        <span>{{ deployedCount }}</span>
+        <span>{{ getNetwork.isL1 ? deployedL1Count : deployedL2Count }}</span>
       </template>
     </i18n>
-
     <div class="tornado-discoverer image is-16by9"></div>
 
     <steps ref="steps" />
@@ -37,7 +37,8 @@ export default {
     Steps,
   },
   computed: {
-    ...mapGetters('steps', ['deployedCount']),
+    ...mapGetters('steps', ['deployedL1Count', 'deployedL2Count']),
+    ...mapGetters('provider', ['getNetwork']),
   },
   methods: {
     scrollTo(element) {

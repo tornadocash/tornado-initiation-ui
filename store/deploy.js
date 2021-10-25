@@ -25,7 +25,7 @@ const mutations = {}
 const actions = {
   async deployContract(
     { state, dispatch, getters, rootGetters, commit, rootState },
-    { action, index }
+    { action, index, isL1 }
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
@@ -69,12 +69,17 @@ const actions = {
         ],
         from: ethAccount,
       }
-      const gasEstimate =
-        action.domain === 'deployer.contract.tornadocash.eth'
-          ? numberToHex(1e6)
-          : await dispatch('provider/sendRequest', callParamsEstimate, {
-              root: true,
-            })
+
+      const deployerContracts = [
+        'deployerL1.contract.tornadocash.eth',
+        'deployerL2.contract.tornadocash.eth',
+      ]
+
+      const gasEstimate = deployerContracts.includes(action.domain)
+        ? numberToHex(1e6)
+        : await dispatch('provider/sendRequest', callParamsEstimate, {
+            root: true,
+          })
       const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
       const callParams = {
         method: 'eth_sendTransaction',
@@ -106,7 +111,7 @@ const actions = {
       dispatch('loading/disable', {}, { root: true })
       dispatch(
         'steps/setPendingState',
-        { status: true, stepIndex: index },
+        { status: true, stepIndex: index, isL1 },
         { root: true }
       )
 
@@ -172,7 +177,7 @@ const actions = {
       dispatch('loading/disable', {}, { root: true })
       dispatch(
         'steps/setPendingState',
-        { status: false, stepIndex: index },
+        { status: false, stepIndex: index, isL1 },
         { root: true }
       )
     }

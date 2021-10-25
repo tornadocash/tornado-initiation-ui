@@ -1,4 +1,24 @@
 const networkConfig = {
+  netId1: {
+    rpcCallRetryAttempt: 15,
+    gasPrices: { instant: 80, fast: 50, standard: 25, low: 8 },
+    currencyName: 'ETH',
+    explorerUrl: {
+      tx: 'https://etherscan.io/tx/',
+      address: 'https://etherscan.io/address/',
+    },
+    networkName: 'Mainnet',
+    rpcUrls: {
+      Infura: {
+        name: 'Infura',
+        url: 'https://mainnet.infura.io/v3/2884a3281c1d4ae8952e25c84d76bced',
+      },
+      MyCrypto: { name: 'MyCrypto', url: 'https://api.mycryptoapi.com/eth' },
+    },
+    pollInterval: 60,
+    isL1: true,
+  },
+
   netId100: {
     rpcCallRetryAttempt: 15,
     gasPrices: {
@@ -20,6 +40,7 @@ const networkConfig = {
       },
     },
     pollInterval: 200,
+    isL1: false,
   },
 }
 

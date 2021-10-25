@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     border-radius: 6px;
-    background: #1F1F1F;
+    background: #1f1f1f;
 
     @include mobile {
       flex-wrap: wrap;
@@ -21,7 +21,6 @@
   &:first-child {
     margin-top: 0;
   }
-
 
   .diamond {
     margin: 1.25rem 0 1.25rem 1.25rem;
@@ -53,13 +52,13 @@
       }
 
       + .deployed {
-        margin-top: .25rem;
+        margin-top: 0.25rem;
       }
     }
 
     .deployed {
       font-size: 0.813rem;
-      color: #6B6B6B;
+      color: #6b6b6b;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -73,17 +72,19 @@
       flex: none;
       width: 100%;
       text-align: center;
-      padding: .75rem 1.25rem;
+      padding: 0.75rem 1.25rem;
     }
 
-    .button {
+    .button,
+    fieldset[disabled] & .button {
       padding: 0;
       background-color: transparent;
       border: 0;
       color: $primary;
       font-size: 0.875rem;
 
-      &:focus:not(:active), &.is-focused:not(:active) {
+      &:focus:not(:active),
+      &.is-focused:not(:active) {
         box-shadow: none;
       }
     }

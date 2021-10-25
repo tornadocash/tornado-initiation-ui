@@ -1,44 +1,76 @@
 /* eslint-disable no-console */
 import deploymentActions from '../static/deploymentActions.json'
 
+const l1Steps = deploymentActions.actions.filter(
+  ({ isL1Contract }) => isL1Contract
+)
+const l2Steps = deploymentActions.actions.filter(
+  ({ isL1Contract }) => !isL1Contract
+)
+
 const state = () => {
   return {
-    steps: deploymentActions.actions,
+    l1Steps,
+    l2Steps,
   }
 }
 
 const getters = {
-  deployedCount: (state) => {
-    const deployed = state.steps.filter((step) => !!step.deployerAddress).length
-    const all = state.steps.length
+  deployedL1Count: (state, getters) => {
+    return getters.deployedCount(true)
+  },
+  deployedL2Count: (state, getters) => {
+    return getters.deployedCount(false)
+  },
+  steps: (state) => (isL1) => {
+    return isL1 ? state.l1Steps : state.l2Steps
+  },
+  deployedCount: (state, getters) => (isL1) => {
+    const steps = getters.steps(isL1)
+    const deployed = steps.filter((step) => !!step.deployerAddress).length
+    const all = steps.length
     return `${deployed}/${all}`
   },
-  canDeploy: (state) => (domain) => {
-    const { dependsOn } = state.steps.find((s) => s.domain === domain)
-    return dependsOn.every(
-      (d) => !!state.steps.find((s) => s.domain === d).deployerAddress
-    )
+  canDeploy: (state, getters) => (domain, isL1) => {
+    const steps = getters.steps(isL1)
+    const { dependsOn } = steps.find((s) => s.domain === domain)
+    return dependsOn.every((d) => {
+      return Boolean(steps.find((s) => s.domain === d)?.deployerAddress)
+    })
   },
 }
 
 const SET_DEPLOYER = 'SET_DEPLOYER'
 const SET_PENDING_STATE = 'SET_PENDING_STATE'
 const mutations = {
-  [SET_DEPLOYER](state, { stepIndex, deployerAddress, deployTransaction }) {
-    this._vm.$set(state.steps[stepIndex], 'deployerAddress', deployerAddress)
+  [SET_DEPLOYER](
+    state,
+    { stepIndex, deployerAddress, deployTransaction, isL1 }
+  ) {
+    const steps = isL1 ? 'l1Steps' : 'l2Steps'
+    this._vm.$set(state[steps][stepIndex], 'deployerAddress', deployerAddress)
     this._vm.$set(
-      state.steps[stepIndex],
+      state[steps][stepIndex],
       'deployTransaction',
       deployTransaction
     )
   },
-  [SET_PENDING_STATE](state, { status, stepIndex }) {
-    this._vm.$set(state.steps[stepIndex], 'isPending', status)
+  [SET_PENDING_STATE](state, { status, stepIndex, isL1 }) {
+    const steps = isL1 ? 'l1Steps' : 'l2Steps'
+    this._vm.$set(state[steps][stepIndex], 'isPending', status)
   },
 }
 
 const actions = {
-  async fetchDeploymentStatus({ state, dispatch, commit, rootGetters }) {
+  async fetchDeploymentStatus({
+    state,
+    getters,
+    dispatch,
+    commit,
+    rootGetters,
+  }) {
+    const { isL1 } = rootGetters['provider/getNetwork']
+    const steps = getters.steps(isL1)
     const deployContract = rootGetters['deploy/deployerContract'](false)
     const events = await deployContract.getPastEvents('Deployed', {
       fromBlock: 0,
@@ -46,7 +78,7 @@ const actions = {
     })
 
     for (const event of events) {
-      const step = state.steps.find(
+      const step = steps.find(
         (s) => s.expectedAddress === event.returnValues.addr
       )
 
@@ -54,9 +86,10 @@ const actions = {
         continue
       }
       commit(SET_DEPLOYER, {
-        stepIndex: state.steps.indexOf(step),
+        stepIndex: steps.indexOf(step),
         deployerAddress: event.returnValues.sender,
         deployTransaction: event.transactionHash,
+        isL1,
       })
     }
   },
@@ -70,8 +103,8 @@ const actions = {
       }
     }, 15000)
   },
-  setPendingState({ commit }, { status, stepIndex }) {
-    commit(SET_PENDING_STATE, { status, stepIndex })
+  setPendingState({ commit }, payload) {
+    commit(SET_PENDING_STATE, payload)
   },
 }
 export default {
