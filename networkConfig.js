@@ -17,6 +17,7 @@ const networkConfig = {
     },
     pollInterval: 60,
     isL1: true,
+    isEip1559Supported: true,
   },
 
   netId100: {
@@ -41,6 +42,7 @@ const networkConfig = {
     },
     pollInterval: 200,
     isL1: false,
+    isEip1559Supported: false,
   },
 }
 

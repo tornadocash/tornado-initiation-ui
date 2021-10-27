@@ -13,7 +13,7 @@ import {
 export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
-      const account = await this.$provider.initProvider(getters.getProvider)
+      const account = await this.$provider.initProvider(getters.getProvider, {})
       const supportedNetworks = [numberToHex(1), numberToHex(100)]
       if (!supportedNetworks.includes(window.ethereum.chainId)) {
         await dispatch(

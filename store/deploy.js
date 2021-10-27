@@ -4,13 +4,19 @@ import { hexToNumber, numberToHex } from 'web3-utils'
 import deployerABI from '../abi/deployer.abi.json'
 import deploymentActions from '../static/deploymentActions.json'
 
+const deployerContracts = [
+  'deployer.contract.tornadocash.eth',
+  'deployerL1.contract.tornadocash.eth',
+  'deployerL2.contract.tornadocash.eth',
+]
+
 const state = () => {
   return {}
 }
 
 const getters = {
   deployerContract: (state, getters, rootState, rootGetters) => (isProxy) => {
-    const web3 = new Web3(rootGetters['provider/getNetwork'].rpcUrls.Infura.url)
+    const web3 = new Web3(rootGetters['provider/getRpc'])
     return new web3.eth.Contract(
       deployerABI,
       isProxy
@@ -29,10 +35,7 @@ const actions = {
   ) {
     try {
       dispatch('loading/enable', {}, { root: true })
-      const isProxy = action.domain === 'deployer.contract.tornadocash.eth'
-      const ethAccount = rootGetters['provider/getAccount']
-      const web3 = rootGetters['provider/getWeb3']
-
+      const web3 = this.$provider.getWeb3(rootGetters['provider/getRpc'])
       const code = await web3.eth.getCode(action.expectedAddress)
       console.log('code', code)
       if (code !== '0x') {
@@ -49,52 +52,35 @@ const actions = {
         throw new Error('Already deployed')
       }
 
-      const gasPrice = rootGetters['gasPrice/fastGasPrice']
+      const ethAccount = rootGetters['provider/getAccount']
+      const txGasParams = rootGetters['gasPrice/txGasParams']
 
-      const data = getters
-        .deployerContract(isProxy)
-        .methods.deploy(action.bytecode, deploymentActions.salt)
+      console.log(txGasParams)
+
+      const isProxy = deployerContracts.includes(action.domain)
+      const deployerContract = getters.deployerContract(isProxy)
+
+      const data = deployerContract.methods
+        .deploy(action.bytecode, deploymentActions.salt)
         .encodeABI()
-      const callParamsEstimate = {
-        method: 'eth_estimateGas',
-        params: [
-          {
-            from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
-            // gas: numberToHex(6e6),
-            gasPrice,
-            value: `0x0`,
-            data,
-          },
-        ],
+      const params = {
         from: ethAccount,
+        to: deployerContract._address,
+        ...txGasParams,
+        value: '0x0',
+        data,
       }
 
-      const deployerContracts = [
-        'deployerL1.contract.tornadocash.eth',
-        'deployerL2.contract.tornadocash.eth',
-      ]
+      const gasEstimate = isProxy
+        ? numberToHex(363636)
+        : await dispatch(
+            'provider/sendRequest',
+            { method: 'eth_estimateGas', params: [params] },
+            { root: true }
+          )
 
-      const gasEstimate = deployerContracts.includes(action.domain)
-        ? numberToHex(1e6)
-        : await dispatch('provider/sendRequest', callParamsEstimate, {
-            root: true,
-          })
       const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
-      const callParams = {
-        method: 'eth_sendTransaction',
-        params: [
-          {
-            from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
-            gas: numberToHex(gasWithBuffer),
-            gasPrice,
-            value: 0,
-            data,
-          },
-        ],
-        from: ethAccount,
-      }
+
       dispatch(
         'loading/changeText',
         {
@@ -104,9 +90,21 @@ const actions = {
         },
         { root: true }
       )
-      const txHash = await dispatch('provider/sendRequest', callParams, {
-        root: true,
-      })
+      const txHash = await dispatch(
+        'provider/sendRequest',
+        {
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              ...params,
+              gas: numberToHex(gasWithBuffer),
+            },
+          ],
+        },
+        {
+          root: true,
+        }
+      )
       console.log('txHash', txHash)
       dispatch('loading/disable', {}, { root: true })
       dispatch(
