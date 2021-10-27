@@ -6,7 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate && cp dist/404.html dist/ipfs-404.html",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "deploy-prod": "npm run generate && push-dir --allow-unclean --dir=dist --branch=gh-pages --cleanup --remote=temp"

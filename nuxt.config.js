@@ -5,6 +5,10 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
+  generate: {
+    fallback: true,
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Tornado.cash',
@@ -37,7 +41,7 @@ export default {
   css: ['@/assets/styles/app.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/i18n.js'],
+  plugins: ['~/plugins/i18n.js', '~/plugins/ipfs.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -85,9 +89,21 @@ export default {
     extend(config, ctx) {
       config.output.publicPath = './_nuxt/'
     },
-    // splitChunks: {
-    //   commons: false
-    // }
+    html: {
+      minify: {
+        collapseWhitespace: true, // as @dario30186 mentioned
+        removeComments: true, // 👈 add this line
+      },
+    },
+    loaders: {
+      fontUrl: { limit: 25000 },
+      imgUrl: { limit: 15000 },
+    },
+    splitChunks: {
+      layouts: false,
+      pages: false,
+      commons: false,
+    },
   },
 
   router: {
