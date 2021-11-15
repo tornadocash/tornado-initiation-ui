@@ -146,4 +146,34 @@ export default {
       })
     }
   },
+  async sendTransaction(
+    { dispatch, rootGetters },
+    { method, params, eipDisable = false }
+  ) {
+    try {
+      const gasParams = rootGetters['gasPrice/txGasParams'](eipDisable)
+
+      const txHash = await dispatch('sendRequest', {
+        method,
+        params: [
+          {
+            ...params,
+            ...gasParams,
+          },
+        ],
+      })
+
+      return txHash
+    } catch (err) {
+      if (err.message.includes('EIP-1559')) {
+        return await dispatch('sendTransaction', {
+          method,
+          params,
+          eipDisable: true,
+        })
+      }
+
+      throw new Error(err.message)
+    }
+  },
 }

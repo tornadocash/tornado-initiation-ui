@@ -7,15 +7,10 @@ const { toHex, toWei } = require('web3-utils')
 export const state = () => {
   return {
     params: {
-      1: {
-        maxFeePerGas: '0x25FF7A6000',
-        maxPriorityFeePerGas: '0x77359400',
-      },
+      maxFeePerGas: '0x25FF7A6000',
+      maxPriorityFeePerGas: '0x77359400',
     },
-    prices: {
-      1: Object.assign(networkConfig.netId1.gasPrices),
-      100: Object.assign(networkConfig.netId100.gasPrices),
-    },
+    prices: Object.assign(networkConfig.netId1.gasPrices),
   }
 }
 
@@ -31,36 +26,37 @@ export const getters = {
       defaultFallbackGasPrices: gasPrices,
     })
   },
-  gasParams: (state) => (chainId) => {
-    return state.params[chainId]
+  isEip1559Supported: (state, getters, rootState, rootGetters) => {
+    const { isEip1559Supported } = rootGetters['provider/getNetwork']
+    return isEip1559Supported
   },
-  gasPrice: (state) => (chainId) => {
-    const currentGas = state.prices[chainId]
-    return toHex(toWei(currentGas.fast.toString(), 'gwei'))
-  },
-  txGasParams: (state, getters, rootState, rootGetters) => {
-    const { id: chainId, isEip1559Supported } = rootGetters[
-      'provider/getNetwork'
-    ]
-    if (isEip1559Supported) {
-      return getters.gasParams(chainId)
+  gasPrice: (state, getters) => {
+    if (getters.isEip1559Supported) {
+      return state.params.maxFeePerGas
     }
-    return { gasPrice: getters.gasPrice(chainId) }
+
+    return toHex(toWei(state.prices.fast.toString(), 'gwei'))
+  },
+  txGasParams: (state, getters) => (isDisable = false) => {
+    if (!isDisable && getters.isEip1559Supported) {
+      return state.params
+    }
+    return { gasPrice: getters.gasPrice }
   },
 }
 
 export const mutations = {
-  SAVE_GAS_PRICES(state, { chainId, ...gas }) {
-    this._vm.$set(state.prices, chainId, gas)
+  SAVE_GAS_PRICES(state, gas) {
+    this._vm.$set(state, 'prices', gas)
   },
-  SET_GAS_PARAMS(state, { chainId, ...params }) {
-    this._vm.$set(state.params, chainId, params)
+  SET_GAS_PARAMS(state, params) {
+    this._vm.$set(state, 'params', params)
   },
 }
 
 export const actions = {
   async fetchGasParams({ getters, commit, dispatch, rootGetters, state }) {
-    const { pollInterval, id: chainId, isEip1559Supported } = rootGetters[
+    const { pollInterval, isEip1559Supported } = rootGetters[
       'provider/getNetwork'
     ]
     const rpcUrl = rootGetters['provider/getRpc']
@@ -72,11 +68,10 @@ export const actions = {
         commit('SET_GAS_PARAMS', {
           maxFeePerGas: toHex(maxFeePerGas.toString()),
           maxPriorityFeePerGas: toHex(maxPriorityFeePerGas.toString()),
-          chainId,
         })
       } else {
         const gas = await getters.oracle.gasPrices()
-        commit('SAVE_GAS_PRICES', { chainId, ...gas })
+        commit('SAVE_GAS_PRICES', gas)
         console.log(`Got fast gas price ${gas.fast}`)
       }
 

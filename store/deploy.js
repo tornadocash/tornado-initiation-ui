@@ -30,7 +30,7 @@ const mutations = {}
 
 const actions = {
   async deployContract(
-    { state, dispatch, getters, rootGetters, commit, rootState },
+    { dispatch, getters, rootGetters },
     { action, index, isL1 }
   ) {
     try {
@@ -53,9 +53,6 @@ const actions = {
       }
 
       const ethAccount = rootGetters['provider/getAccount']
-      const txGasParams = rootGetters['gasPrice/txGasParams']
-
-      console.log(txGasParams)
 
       const isProxy = deployerContracts.includes(action.domain)
       const deployerContract = getters.deployerContract(isProxy)
@@ -66,7 +63,6 @@ const actions = {
       const params = {
         from: ethAccount,
         to: deployerContract._address,
-        ...txGasParams,
         value: '0x0',
         data,
       }
@@ -91,15 +87,13 @@ const actions = {
         { root: true }
       )
       const txHash = await dispatch(
-        'provider/sendRequest',
+        'provider/sendTransaction',
         {
           method: 'eth_sendTransaction',
-          params: [
-            {
-              ...params,
-              gas: numberToHex(gasWithBuffer),
-            },
-          ],
+          params: {
+            ...params,
+            gas: numberToHex(gasWithBuffer),
+          },
         },
         {
           root: true,

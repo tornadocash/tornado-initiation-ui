@@ -14,7 +14,7 @@
   "dependencies": {
     "@mycrypto/gas-estimation": "^1.1.0",
     "core-js": "^3.6.5",
-    "gas-price-oracle": "^0.4.0",
+    "gas-price-oracle": "^0.4.2",
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.6",
     "nuxt-buefy": "^0.4.4",
