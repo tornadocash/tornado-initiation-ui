@@ -69,12 +69,13 @@ const actions = {
         ],
         from: ethAccount,
       }
-      const gasEstimate =
-        action.domain === 'deployer.contract.tornadocash.eth'
-          ? numberToHex(1e6)
-          : await dispatch('provider/sendRequest', callParamsEstimate, {
-              root: true,
-            })
+      const gasEstimate = await dispatch(
+        'provider/sendRequest',
+        callParamsEstimate,
+        {
+          root: true,
+        }
+      )
       const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
       const callParams = {
         method: 'eth_sendTransaction',

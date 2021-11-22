@@ -12,16 +12,16 @@
     "deploy-prod": "npm run generate && push-dir --allow-unclean --dir=dist --branch=gh-pages --cleanup --remote=temp"
   },
   "dependencies": {
-    "nuxt-web3-provider": "^0.1.1",
+    "nuxt-web3-provider": "^0.1.4",
     "core-js": "^3.6.5",
-    "gas-price-oracle": "^0.3.4",
+    "gas-price-oracle": "^0.4.4",
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.6",
     "nuxt-buefy": "^0.4.4",
     "push-dir": "^0.4.1",
     "sass-loader": "^10.0.3",
     "vue-i18n": "^8.22.1",
-    "web3": "1.2.6"
+    "web3": "1.5.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

@@ -13,22 +13,21 @@ import {
 export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
-      const account = await this.$provider.initProvider(getters.getProvider)
-
-      if (window.ethereum.chainId !== '0xa86a') {
+      const account = await this.$provider.initProvider(getters.getProvider, {})
+      if (window.ethereum.chainId !== '0xa4b1') {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'avalancheOnly',
+              title: 'arbitrumOnly',
               type: 'danger',
-              callback: () => dispatch('switchNetwork', { netId: 43114 }),
+              callback: () => dispatch('switchNetwork', { netId: 42161 }),
               message: 'switchNetwork',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to Avalanche')
+        throw new Error('Connect to Arbitrum')
       }
 
       commit(SET_PROVIDER_NAME, name)
@@ -120,16 +119,16 @@ export default {
   },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      43114: {
-        chainId: '0xA86A',
-        chainName: 'Avalanche Mainnet',
-        rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+      42161: {
+        chainId: '0xA4B1',
+        chainName: 'Arbitrum One',
+        rpcUrls: ['https://arb1.arbitrum.io/rpc'],
         nativeCurrency: {
-          name: 'Avalanche',
-          symbol: 'AVAX',
+          name: 'Ether',
+          symbol: 'AETH',
           decimals: 18,
         },
-        blockExplorerUrls: ['https://cchain.explorer.avax.network'],
+        blockExplorerUrls: ['https://arbiscan.io'],
       },
     }
 

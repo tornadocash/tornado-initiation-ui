@@ -37,6 +37,7 @@ export default {
     }
     this.fetchDeploymentStatus()
     this.statusPooling()
+    this.fetchGasPrice()
 
     this.setAirdropAddresses()
   },
@@ -44,6 +45,7 @@ export default {
     ...mapActions('provider', ['initProvider']),
     ...mapActions('airdrop', ['setAirdropAddresses']),
     ...mapActions('steps', ['statusPooling', 'fetchDeploymentStatus']),
+    ...mapActions('gasPrice', ['fetchGasPrice']),
   },
 }
 </script>
