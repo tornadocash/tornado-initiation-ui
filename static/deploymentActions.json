@@ -37,9 +37,7 @@
       "title": "L1 Omnibridge Helper",
       "constructorArgs": "0x00000000000000000000000088ad09518695c6c3712ac10a214be5109a655671000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000005efda50f22d34f262c29268506c5fa42cb56a1ce",
       "description": "Utility contract for the xDAI Omnibridge on L1",
-      "dependsOn": [
-        "deployerL1.contract.tornadocash.eth"
-      ],
+      "dependsOn": ["deployerL1.contract.tornadocash.eth"],
       "isL1Contract": true
     },
     {
@@ -60,9 +58,7 @@
       "expectedAddress": "0xa984e379f813fFbD7E043eEFd9D14B4DCc12CD5e",
       "title": "Hasher",
       "description": "Poseidon hasher contract",
-      "dependsOn": [
-        "deployerL2.contract.tornadocash.eth"
-      ],
+      "dependsOn": ["deployerL2.contract.tornadocash.eth"],
       "isL1Contract": false
     },
     {
@@ -72,9 +68,7 @@
       "expectedAddress": "0xA2ab7e18FF11A8375cc4D61B43539EEDf74bC9d6",
       "title": "Verifier2",
       "description": "zkSNARK verifier contract for 2 input operations",
-      "dependsOn": [
-        "deployerL2.contract.tornadocash.eth"
-      ],
+      "dependsOn": ["deployerL2.contract.tornadocash.eth"],
       "isL1Contract": false
     },
     {
@@ -84,9 +78,7 @@
       "expectedAddress": "0x5BE05Baf767e25b395edbE477637F0Fd6bEdE8e6",
       "title": "Verifier16",
       "description": "zkSNARK verifier contract for 16 input operations",
-      "dependsOn": [
-        "deployerL2.contract.tornadocash.eth"
-      ],
+      "dependsOn": ["deployerL2.contract.tornadocash.eth"],
       "isL1Contract": false
     },
     {
@@ -96,7 +88,7 @@
       "expectedAddress": "0xEecAC0abB181b8E58fe6487a9A7E9CaE5221f93a",
       "title": "Tornado Pool implementation",
       "constructorArgs": "0x000000000000000000000000a2ab7e18ff11a8375cc4d61b43539eedf74bc9d60000000000000000000000005be05baf767e25b395edbe477637f0fd6bede8e60000000000000000000000000000000000000000000000000000000000000017000000000000000000000000a984e379f813ffbd7e043eefd9d14b4dcc12cd5e0000000000000000000000006a023ccd1ff6f2045c3309768ead9e68f978f6e1000000000000000000000000f6a78083ca3e2a662d6dd1703c939c8ace2e268d000000000000000000000000c8162b135ced80a6b8aa457ec1ef7f030de873790000000000000000000000005efda50f22d34f262c29268506c5fa42cb56a1ce0000000000000000000000000000000000000000000000000000000000000001",
-      "description": "Tornado Pool proxy implementation",
+      "description": "TornadoCash Nova proxy implementation",
       "dependsOn": [
         "deployerL2.contract.tornadocash.eth",
         "hasher.contract.tornadocash.eth",
@@ -112,7 +104,7 @@
       "expectedAddress": "0xbA41BDf9fB0015ed852F9f221176C48FD9158B43",
       "title": "Cross-chain Upgradeable Proxy",
       "constructorArgs": "0x000000000000000000000000eecac0abb181b8e58fe6487a9a7e9cae5221f93a0000000000000000000000005efda50f22d34f262c29268506c5fa42cb56a1ce00000000000000000000000000000000000000000000000000000000000000a000000000000000000000000075df5af045d91108662d8080fd1fefad6aa0bb5900000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000044e4a3011600000000000000000000000000000000000000000000000000b1a2bc2ec500000000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000",
-      "description": "Upgradability proxy contract for Tornado Pool owned by TornadoCash governance",
+      "description": "Upgradability proxy contract for TornadoCash Nova owned by TornadoCash governance",
       "dependsOn": [
         "deployerL2.contract.tornadocash.eth",
         "tornadoPool.contract.tornadocash.eth"

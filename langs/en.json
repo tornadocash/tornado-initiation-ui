@@ -19,7 +19,7 @@
   "l1": "Layer 1",
   "l2": "Layer 2",
   "completedTasks": "Completed {layer} Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash Pool protocol.",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash Nova protocol.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
