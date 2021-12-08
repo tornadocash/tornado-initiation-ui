@@ -5,16 +5,6 @@
         <Logo />
       </b-navbar-item>
     </template>
-    <template slot="start">
-      <b-navbar-item
-        href="https://medium.com/@tornado-cash/tornado-cash-introduces-arbitrary-amounts-internal-transfers-8df92d93c37c"
-        target="_blank"
-        class="decorate"
-        rel="noreferrer"
-      >
-        {{ $t('info') }}
-      </b-navbar-item>
-    </template>
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
