@@ -14,20 +14,20 @@ export default {
   async initProvider({ commit, state, getters, dispatch }, { name, network }) {
     try {
       const account = await this.$provider.initProvider(getters.getProvider, {})
-      if (window.ethereum.chainId !== '0xa4b1') {
+      if (window.ethereum.chainId !== '0xa') {
         await dispatch(
           'notice/addNotice',
           {
             notice: {
-              title: 'arbitrumOnly',
+              title: 'optimismOnly',
               type: 'danger',
-              callback: () => dispatch('switchNetwork', { netId: 42161 }),
+              callback: () => dispatch('switchNetwork', { netId: 10 }),
               message: 'switchNetwork',
             },
           },
           { root: true }
         )
-        throw new Error('Connect to Arbitrum')
+        throw new Error('Connect to Optimism')
       }
 
       commit(SET_PROVIDER_NAME, name)
@@ -119,16 +119,16 @@ export default {
   },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      42161: {
-        chainId: '0xA4B1',
-        chainName: 'Arbitrum One',
-        rpcUrls: ['https://arb1.arbitrum.io/rpc'],
+      10: {
+        chainId: '0xa',
+        chainName: 'Optimistic Ethereum',
+        rpcUrls: ['https://mainnet.optimism.io/'],
         nativeCurrency: {
           name: 'Ether',
-          symbol: 'AETH',
+          symbol: 'OETH',
           decimals: 18,
         },
-        blockExplorerUrls: ['https://arbiscan.io'],
+        blockExplorerUrls: ['https://optimistic.etherscan.io'],
       },
     }
 

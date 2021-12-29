@@ -1,5 +1,5 @@
 const networkConfig = {
-  netId42161: {
+  netId10: {
     rpcCallRetryAttempt: 15,
     gasPrices: {
       instant: 4,
@@ -9,15 +9,15 @@ const networkConfig = {
     },
     currencyName: 'ETH',
     explorerUrl: {
-      tx: 'https://arbiscan.io/tx/',
-      address: 'https://arbiscan.io/address/',
+      tx: 'https://optimistic.etherscan.io/tx/',
+      address: 'https://optimistic.etherscan.io/address/',
     },
-    networkName: 'arbitrum',
+    networkName: 'optimism',
     rpcUrls: {
       Infura: {
-        name: 'Arbitrum Public RPC',
+        name: 'Optimism RPC',
         url:
-          'https://arb-mainnet.g.alchemy.com/v2/_82R9fXSpgWH9iv_oKdwKww7qMyJ6OpR',
+          'https://opt-mainnet.g.alchemy.com/v2/6gdxilsHZ0gV2da6mV7grCHRrZAa0jms',
       },
     },
     pollInterval: 15,

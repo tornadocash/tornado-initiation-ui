@@ -3,7 +3,7 @@ import { GasPriceOracle } from 'gas-price-oracle'
 import networkConfig from '@/networkConfig'
 const { toHex, toWei } = require('web3-utils')
 
-const GAS_PRICES = networkConfig.netId42161.gasPrices
+const GAS_PRICES = networkConfig.netId10.gasPrices
 
 export const state = () => {
   return {
@@ -17,7 +17,7 @@ export const getters = {
     const currentRpc = rootGetters['provider/getNetwork'].rpcUrls.Infura.url
     console.log('currentRpc', currentRpc)
     return new GasPriceOracle({
-      chainId: 42161,
+      chainId: 10,
       defaultRpc: currentRpc,
       defaultFallbackGasPrices: GAS_PRICES,
     })

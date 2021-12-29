@@ -55,38 +55,35 @@ const actions = {
         .deployerContract(isProxy)
         .methods.deploy(action.bytecode, deploymentActions.salt)
         .encodeABI()
-      const callParamsEstimate = {
-        method: 'eth_estimateGas',
-        params: [
-          {
-            from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
-            // gas: numberToHex(6e6),
-            gasPrice,
-            value: `0x0`,
-            data,
-          },
-        ],
+
+      const params = {
         from: ethAccount,
+        to: getters.deployerContract(isProxy)._address,
+        value: '0x0',
+        data,
       }
-      const gasEstimate = await dispatch(
-        'provider/sendRequest',
-        callParamsEstimate,
-        {
-          root: true,
-        }
-      )
+
+      const gasEstimate = isProxy
+        ? numberToHex(363636)
+        : await dispatch(
+            'provider/sendRequest',
+            {
+              method: 'eth_estimateGas',
+              params: [params],
+              from: ethAccount,
+            },
+            {
+              root: true,
+            }
+          )
       const gasWithBuffer = Math.ceil(hexToNumber(gasEstimate) * 1.1)
       const callParams = {
         method: 'eth_sendTransaction',
         params: [
           {
-            from: ethAccount,
-            to: getters.deployerContract(isProxy)._address,
+            ...params,
             gas: numberToHex(gasWithBuffer),
             gasPrice,
-            value: 0,
-            data,
           },
         ],
         from: ethAccount,

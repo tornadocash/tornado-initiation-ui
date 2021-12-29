@@ -17,7 +17,7 @@
   "deployedBy": "Deployed by: {link}",
   "startNow": "Start now",
   "completedTasks": "Completed Tasks: {progress}",
-  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on Aribtrum One.",
+  "pageSubtitle": "Follow these simple steps to become part of deployment of Tornado.Cash protocol on Optimism.",
   "alreadyDeployed": "Already deployed",
   "contractDeployed": "Contract successfully deployed",
   "transactionFailed": "Transaction was failed",
@@ -26,6 +26,6 @@
   "viewOnEtherscan": "View on Etherscan",
   "pleaseConnectWallet": "Please connect your wallet first",
   "dependsOnEns": "This action depends on {ens}",
-  "arbitrumOnly": "Please switch your wallet to Arbitrum One",
-  "switchNetwork": "Switch to Arbitrum"
+  "optimismOnly": "Please switch your wallet to Optimism",
+  "switchNetwork": "Switch to Optimism"
 }

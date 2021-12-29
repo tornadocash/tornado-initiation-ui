@@ -1,8 +1,8 @@
 export default () => ({
   account: null,
   network: {
-    name: 'arbitrum',
-    id: 42161,
+    name: 'optimism',
+    id: 10,
   },
   provider: {
     name: '',
